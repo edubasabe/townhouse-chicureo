@@ -1,0 +1,136 @@
+.hero {
+  background: url('../images/proyecto.jpg') no-repeat center;
+  overflow: hidden;
+  position: relative;
+
+  @include xxs-device {
+    background-size: cover;
+    height: 77vh;
+  }
+
+  @include sm-device {
+    height: 91.2vh;
+  }
+
+
+  &__device {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+
+    @include xxs-device {
+      bottom: -6rem;
+      transform: scale(.5);
+      transform-origin: left bottom;
+    }
+
+    @include sm-device {
+      transform: scale(1);
+    }
+  }
+
+  &__logo {
+    p {
+       @include xxs-device {
+         margin-bottom: 0;
+       }
+
+       img {
+         @include xxs-device {
+           transform: scale(.8);
+         }
+       }
+    }
+
+
+    @include xxs-device {
+      margin: 3rem auto;
+      margin-top: 1rem;
+    }
+
+    @include sm-device {
+      display: block;
+      margin: 6rem auto;
+    }
+
+    @include md-device {
+      margin: 6rem auto;
+    }
+
+    &__headline {
+      text-shadow: 0 0 .3rem rgba($negro, .4);
+
+      @include xxs-device {
+        font-size: 2rem;
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__cta {
+    @include xxs-device {
+      display: block;
+    }
+
+    @include sm-device {
+      display: none;
+    }
+  }
+
+  &__form {
+    background: rgba($blanco, .8);
+    border-radius: .4rem;
+    margin: 0 auto;
+    max-width: 36rem;
+    padding: 2rem 3rem;
+
+    legend {
+      border: 0;
+      color: $verde;
+      font-size: 2.4rem;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    input {
+      border-radius: .3rem;
+      font-size: 1.6rem;
+      min-height: 4.4rem;
+    }
+
+    textarea {
+      border-radius: .3rem;
+      font-size: 1.6rem;
+    }
+
+    .btn {
+      background: $verde;
+      border: 0;
+      border-radius: .4rem;
+      font-weight: bold;
+
+      &:active {
+        background: rgba($verde, .8);
+      }
+    }
+    @include xxs-device {
+      display: none;
+      margin-bottom: 4rem;
+    }
+    @include sm-device {
+      display: block;
+      margin: 6rem auto;
+    }
+    @include md-device {
+      margin: 6rem auto;
+    }
+
+    .form-group {
+      label {
+        &.error {
+          color: $verde;
+        }
+      }
+    }
+  }
+}
