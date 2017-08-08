@@ -1,5 +1,5 @@
 .hero {
-  background: url('../images/proyecto.jpg') no-repeat center;
+  background: url('../images/townhouse/hero@2x.jpg') no-repeat center;
   overflow: hidden;
   position: relative;
 
@@ -10,6 +10,10 @@
 
   @include sm-device {
     height: 91.2vh;
+  }
+
+  @include md-device {
+    height: 66rem;
   }
 
 
@@ -78,17 +82,18 @@
   }
 
   &__form {
-    background: rgba($blanco, .8);
+    background: rgba($negro, .8);
     border-radius: .4rem;
+    box-shadow: 0 .1rem .6rem  rgba($negro, .5);
     margin: 0 auto;
     max-width: 36rem;
     padding: 2rem 3rem;
 
     legend {
       border: 0;
-      color: $verde;
+      color: $blanco;
       font-size: 2.4rem;
-      font-weight: 300;
+      font-weight: 400;
       text-align: center;
     }
 
@@ -104,13 +109,13 @@
     }
 
     .btn {
-      background: $verde;
+      background: $gris-dark;
       border: 0;
       border-radius: .4rem;
-      font-weight: bold;
+      font-weight: 500;
 
       &:active {
-        background: rgba($verde, .8);
+        background: rgba($gris-dark, .8);
       }
     }
     @include xxs-device {

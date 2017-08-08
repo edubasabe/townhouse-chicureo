@@ -34,7 +34,7 @@
 
           > .active {
             a {
-              background-color: $verde;
+              background-color: $gris-dark;
               color: $blanco;
             }
           }
@@ -51,7 +51,7 @@
         > .dropdown-toggle {
           &.btn-primary {
             &:hover {
-              background-color: $verde-dark;
+              background-color: $gris-dark;
             }
           }
         }

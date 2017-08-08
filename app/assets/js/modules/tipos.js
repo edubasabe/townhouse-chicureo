@@ -4,9 +4,34 @@ $('#section-tipos .dropdown-menu > li').on('click', function () {
 $('#section-tipos .dropdown-menu > li').toggleClass('active').siblings().removeClass('active').attr('aria-expanded', 'false');
 });
 
+
 $(document).on('load', function () {
-  $('#511 .panoramica').html('Prueba');
+
+  $('#loft.tab-pane .tipos__content ul.list-unstyled').html(`
+  <li>- Hall de acceso en doble altura</li>
+  <li>- Dormitorio principal en suite con terraza</li>
+  <li>- Dormitorio secundario</li>
+  <li>- Home office</li>
+  <li>- Baño en suite con hidromasaje y grifería alemana</li>
+  <li>- Cocina con campana, horno y encimera eléctrica y lavavajillas de origen alemán</li>
+  <li>- Terraza de 12.5 m2 aproximado, envigado, barbecue y lockers</li>
+  <li>- Jardín privado de uso exclusivo de aproximadamente 16 m2 con acceso directo a sector de parques</li>
+  <li>- Construcción en hormigón armado en paredes exteriores y losas</li>
+  <li>- Eficiente sistema de aislación térmica con sistema EIFS en paredes y cámara de aislación en techos</li>
+  <li>- Ventanas de PVC con folio color madera y termopanel</li>
+  <li>- Calefacción por radiadores</li>
+  <li>- Conexiones para instalación de aire acondicionado split</li>
+  <li>- Puertas enchapadas en todos los ambientes</li>
+  <li>- Pisos flotantes fotolaminados y porcelanato en baños y cocinas</li>
+  <li>- Domótica Ready</li>
+    `);
+
+
+
+
 });
+
+
 
 //------------------------------------------------------------------------------
 // VueJS
@@ -17,73 +42,29 @@ var deptos = new Vue({
   data: {
     deptos: [
       {
-        id: '101a401',
+        id: 'loft',
         class: 'tab-pane active',
         imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/101a401.jpg',
-        title: 'Departamentos 101 a 401',
-        desc: '3 Dormitorios / 1 en suite - 2 Baños completos - Walking closet - Baño visita - Espaciosa cocina equipada - Sala de estar - 2 terrazas',
+        title: 'LOFT',
+        price: '8.499',
+        desc: 'Ubicados en segundo piso, Loft en doble altura con una superficie Útil de 120 m2, cuentan con 3 Dormitorios, 2 Baños, Estar privado y Terraza de 17 m2 con Barbecue.',
         nota: '* Depto. 101 con gradas en 1er nivel',
         util: '136.28',
         terraza: '28.07',
         total: '164.35'
       },
       {
-        id: '102a502',
+        id: 'deptos',
         class: 'tab-pane',
         imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/102a502.jpg',
-        title: 'Departamentos 102 a 502',
-        desc: '2 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - 2 terrazas',
+        title: 'DEPTO',
+        price: '6.360',
+        desc: 'Ubicados en primer piso con una Superficie Útil de 83 m2, cuentan con 2 Dormitorios, 2 Baños, Home Office, Terrazas con Barbecue y un Jardín privado.',
         nota: '* PRIMER PISO ALTURA DE PISO A CIELO 2.90 M. SEGUNDO A QUINTO PISO ALTURA DE 2.60 M.',
         util: '90.89',
         terraza: '16.89',
         total: '107.78'
       },
-      {
-        id: '103a503',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/103a503.jpg',
-        title: 'Departamentos 103 a 503',
-        desc: '2 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - 2 terrazas',
-        nota: '* PRIMER PISO ALTURA DE PISO A CIELO 2.90 M. SEGUNDO A QUINTO PISO ALTURA DE 2.60 M.',
-        util: '84.95',
-        terraza: '18.40',
-        total: '103.35'
-      },
-      {
-        id: '104a404',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/104a404.jpg',
-        title: 'Departamentos 104 a 404',
-        desc: '3 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - Baño de visita - Sala de estar - 2 terrazas',
-        nota: '* DEPTO 104 CON GRADAS EN 1ER NIVEL.',
-        util: '140.02',
-        terraza: '24.6',
-        total: '164.62'
-      },
-      {
-        id: '504',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/504-01.jpg',
-        title: 'Departamentos 504',
-        desc: `3 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - Baño visita - Sala de estar - 2 terrazas - Terraza panorámica de uso exclusivo`,
-        util: '140.02',
-        terraza: '24.6',
-        total: '190.85',
-        panoramica: 'Superfice Terraza Panorámica: 26.23 M2'
-
-      },
-      {
-        id: '511',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/511-01.jpg',
-        title: 'Departamentos 511',
-        desc: '3 dormitorios / 1 en suite - 3 baños completos - Walking closet - Baño visita - Sala de estar - Espaciosa cocina equipada - Amplia terraza - terraza panorámica de uso exclusivo',
-        util: '1238.32',
-        terraza: '26.13',
-        total: '192.46',
-        panoramica: 'Superfice Terraza Panorámica: 28.01 M2'
-      },
     ],
   },
-
 });

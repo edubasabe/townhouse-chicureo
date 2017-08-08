@@ -3,25 +3,43 @@
     height: auto;
 
     @include sm-device {
-      padding-top: .6rem;
       padding-bottom: .6rem;
+      padding-top: .6rem;
     }
   }
 
   &-default {
-    background-color: $blanco;
+    background-color: $negro;
+    border-color: transparent;
 
     .navbar-nav {
       @include sm-device {
         float: right;
       }
 
+      & > .active {
+        > a {
+            background-color: rgba($gris-dark, .5);
+            color: $blanco;
+
+              &:focus,
+              &:hover {
+                background-color: rgba($gris-dark, .5);
+                color: $blanco;
+            }
+        }
+      }
+
       > li {
         > a {
-          color: $gris;
-          padding-top: 2.2rem;
+          color: $blanco;
           padding-bottom: 2.2rem;
-          &:hover { color: $verde; }
+          padding-top: 2.2rem;
+
+          &:hover,
+          &:focus {
+            color: $gris;
+          }
         }
       }
     }
@@ -34,8 +52,8 @@
 
 
       a {
-        color: $verde;
         border: .2rem solid $verde;
+        color: $verde;
 
         &:hover {
           background-color: transparent;

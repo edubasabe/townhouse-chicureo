@@ -19,23 +19,27 @@ body {
   color: $gris;
 }
 
+.text-color--gris-dark {
+  color: $gris-dark;
+}
+
 .btn {
   &-primary {
-    background-color: $verde;
+    background-color: $gris-dark;
     border: 0;
     border-radius: .4rem;
     transition: all 250ms ease;
 
     &:hover {
-      background-color: rgba($verde, .8);
+      background-color: rgba($gris, .8);
     }
 
     &:active {
-      background-color: rgba($verde, .5) !important;
+      background-color: rgba($gris, .5) !important;
     }
 
     &:focus {
-      background-color: $verde-dark;
+      background-color: $gris-dark;
     }
   }
 }

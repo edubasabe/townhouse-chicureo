@@ -7,7 +7,7 @@
   }
 
   &__intro {
-    background: url('../images/interior.jpg') no-repeat center;
+    background: url('../images/townhouse/intro@2x.jpg') no-repeat center;
 
     @include xxs-device {
       background-position: center bottom;
@@ -48,6 +48,7 @@
 
       @include md-device {
         font-size: 2rem;
+        text-align: center;
       }
     }
   }
