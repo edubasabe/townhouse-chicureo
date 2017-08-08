@@ -1,8 +1,10 @@
+var $ = require('jquery');
 
 
 
-alert('Webpack funciona');
-
+//------------------------------------------------------------------------------
+// VueJS
+//------------------------------------------------------------------------------
 
 //-- Template ------------------------------------------------------------------
 Vue.component('navbar', {
@@ -27,6 +29,7 @@ Vue.component('navbar', {
                   </li>
                   <li><a class="page-scroll" href="#section-hero">Inicio</a></li>
                   <li><a class="page-scroll" href="#section-tipos">Tipos</a></li>
+                  <li><a class="page-scroll" href="#section-domotica">Domótica</a></li>
                   <li><a class="page-scroll" href="#section-map">Ubicación</a></li>
                   <li><a class="page-scroll" href="#section-contacto">Contacto</a></li>
               </ul>
@@ -40,7 +43,10 @@ var navVue = new Vue({
 });
 
 
-//-- Top en el  ----------------------------------------------------------------
+//------------------------------------------------------------------------------
+// Top en el Nav
+//------------------------------------------------------------------------------
+
 var navHeight = $('#v-navbar').height();
 
 if ( $(window).width() > 768 ) {

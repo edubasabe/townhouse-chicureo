@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10325,6 +10325,1023 @@ return jQuery;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var jqueryEasing  = __webpack_require__(2);
+// var bootstrap     = require('bootstrap');
+var lightbox2   = __webpack_require__(3);
+var variables   = __webpack_require__(4);
+var functions   = __webpack_require__(5);
+var navbar      = __webpack_require__(6);
+var tipos       = __webpack_require__(7);
+var domotica    = __webpack_require__(8);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * jQuery Easing v1.4.1 - http://gsgd.co.uk/sandbox/jquery/easing/
+ * Open source under the BSD License.
+ * Copyright © 2008 George McGinley Smith
+ * All rights reserved.
+ * https://raw.github.com/gdsmith/jquery-easing/master/LICENSE
+*/
+
+(function (factory) {
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($) {
+			return factory($);
+		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module === "object" && typeof module.exports === "object") {
+		exports = factory(require('jquery'));
+	} else {
+		factory(jQuery);
+	}
+})(function($){
+
+// Preserve the original jQuery "swing" easing as "jswing"
+$.easing.jswing = $.easing.swing;
+
+var pow = Math.pow,
+	sqrt = Math.sqrt,
+	sin = Math.sin,
+	cos = Math.cos,
+	PI = Math.PI,
+	c1 = 1.70158,
+	c2 = c1 * 1.525,
+	c3 = c1 + 1,
+	c4 = ( 2 * PI ) / 3,
+	c5 = ( 2 * PI ) / 4.5;
+
+// x is the fraction of animation progress, in the range 0..1
+function bounceOut(x) {
+	var n1 = 7.5625,
+		d1 = 2.75;
+	if ( x < 1/d1 ) {
+		return n1*x*x;
+	} else if ( x < 2/d1 ) {
+		return n1*(x-=(1.5/d1))*x + 0.75;
+	} else if ( x < 2.5/d1 ) {
+		return n1*(x-=(2.25/d1))*x + 0.9375;
+	} else {
+		return n1*(x-=(2.625/d1))*x + 0.984375;
+	}
+}
+
+$.extend( $.easing,
+{
+	def: 'easeOutQuad',
+	swing: function (x) {
+		return $.easing[$.easing.def](x);
+	},
+	easeInQuad: function (x) {
+		return x * x;
+	},
+	easeOutQuad: function (x) {
+		return 1 - ( 1 - x ) * ( 1 - x );
+	},
+	easeInOutQuad: function (x) {
+		return x < 0.5 ?
+			2 * x * x :
+			1 - pow( -2 * x + 2, 2 ) / 2;
+	},
+	easeInCubic: function (x) {
+		return x * x * x;
+	},
+	easeOutCubic: function (x) {
+		return 1 - pow( 1 - x, 3 );
+	},
+	easeInOutCubic: function (x) {
+		return x < 0.5 ?
+			4 * x * x * x :
+			1 - pow( -2 * x + 2, 3 ) / 2;
+	},
+	easeInQuart: function (x) {
+		return x * x * x * x;
+	},
+	easeOutQuart: function (x) {
+		return 1 - pow( 1 - x, 4 );
+	},
+	easeInOutQuart: function (x) {
+		return x < 0.5 ?
+			8 * x * x * x * x :
+			1 - pow( -2 * x + 2, 4 ) / 2;
+	},
+	easeInQuint: function (x) {
+		return x * x * x * x * x;
+	},
+	easeOutQuint: function (x) {
+		return 1 - pow( 1 - x, 5 );
+	},
+	easeInOutQuint: function (x) {
+		return x < 0.5 ?
+			16 * x * x * x * x * x :
+			1 - pow( -2 * x + 2, 5 ) / 2;
+	},
+	easeInSine: function (x) {
+		return 1 - cos( x * PI/2 );
+	},
+	easeOutSine: function (x) {
+		return sin( x * PI/2 );
+	},
+	easeInOutSine: function (x) {
+		return -( cos( PI * x ) - 1 ) / 2;
+	},
+	easeInExpo: function (x) {
+		return x === 0 ? 0 : pow( 2, 10 * x - 10 );
+	},
+	easeOutExpo: function (x) {
+		return x === 1 ? 1 : 1 - pow( 2, -10 * x );
+	},
+	easeInOutExpo: function (x) {
+		return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ?
+			pow( 2, 20 * x - 10 ) / 2 :
+			( 2 - pow( 2, -20 * x + 10 ) ) / 2;
+	},
+	easeInCirc: function (x) {
+		return 1 - sqrt( 1 - pow( x, 2 ) );
+	},
+	easeOutCirc: function (x) {
+		return sqrt( 1 - pow( x - 1, 2 ) );
+	},
+	easeInOutCirc: function (x) {
+		return x < 0.5 ?
+			( 1 - sqrt( 1 - pow( 2 * x, 2 ) ) ) / 2 :
+			( sqrt( 1 - pow( -2 * x + 2, 2 ) ) + 1 ) / 2;
+	},
+	easeInElastic: function (x) {
+		return x === 0 ? 0 : x === 1 ? 1 :
+			-pow( 2, 10 * x - 10 ) * sin( ( x * 10 - 10.75 ) * c4 );
+	},
+	easeOutElastic: function (x) {
+		return x === 0 ? 0 : x === 1 ? 1 :
+			pow( 2, -10 * x ) * sin( ( x * 10 - 0.75 ) * c4 ) + 1;
+	},
+	easeInOutElastic: function (x) {
+		return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ?
+			-( pow( 2, 20 * x - 10 ) * sin( ( 20 * x - 11.125 ) * c5 )) / 2 :
+			pow( 2, -20 * x + 10 ) * sin( ( 20 * x - 11.125 ) * c5 ) / 2 + 1;
+	},
+	easeInBack: function (x) {
+		return c3 * x * x * x - c1 * x * x;
+	},
+	easeOutBack: function (x) {
+		return 1 + c3 * pow( x - 1, 3 ) + c1 * pow( x - 1, 2 );
+	},
+	easeInOutBack: function (x) {
+		return x < 0.5 ?
+			( pow( 2 * x, 2 ) * ( ( c2 + 1 ) * 2 * x - c2 ) ) / 2 :
+			( pow( 2 * x - 2, 2 ) *( ( c2 + 1 ) * ( x * 2 - 2 ) + c2 ) + 2 ) / 2;
+	},
+	easeInBounce: function (x) {
+		return 1 - bounceOut( 1 - x );
+	},
+	easeOutBounce: bounceOut,
+	easeInOutBounce: function (x) {
+		return x < 0.5 ?
+			( 1 - bounceOut( 1 - 2 * x ) ) / 2 :
+			( 1 + bounceOut( 2 * x - 1 ) ) / 2;
+	}
+});
+
+});
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * Lightbox v2.9.0
+ * by Lokesh Dhakar
+ *
+ * More info:
+ * http://lokeshdhakar.com/projects/lightbox2/
+ *
+ * Copyright 2007, 2015 Lokesh Dhakar
+ * Released under the MIT license
+ * https://github.com/lokesh/lightbox2/blob/master/LICENSE
+ */
+
+// Uses Node, AMD or browser globals to create a module.
+(function (root, factory) {
+    if (true) {
+        // AMD. Register as an anonymous module.
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals (root is window)
+        root.lightbox = factory(root.jQuery);
+    }
+}(this, function ($) {
+
+  function Lightbox(options) {
+    this.album = [];
+    this.currentImageIndex = void 0;
+    this.init();
+
+    // options
+    this.options = $.extend({}, this.constructor.defaults);
+    this.option(options);
+  }
+
+  // Descriptions of all options available on the demo site:
+  // http://lokeshdhakar.com/projects/lightbox2/index.html#options
+  Lightbox.defaults = {
+    albumLabel: 'Image %1 of %2',
+    alwaysShowNavOnTouchDevices: false,
+    fadeDuration: 600,
+    fitImagesInViewport: true,
+    imageFadeDuration: 600,
+    // maxWidth: 800,
+    // maxHeight: 600,
+    positionFromTop: 50,
+    resizeDuration: 700,
+    showImageNumberLabel: true,
+    wrapAround: false,
+    disableScrolling: false,
+    /*
+    Sanitize Title
+    If the caption data is trusted, for example you are hardcoding it in, then leave this to false.
+    This will free you to add html tags, such as links, in the caption.
+
+    If the caption data is user submitted or from some other untrusted source, then set this to true
+    to prevent xss and other injection attacks.
+     */
+    sanitizeTitle: false
+  };
+
+  Lightbox.prototype.option = function(options) {
+    $.extend(this.options, options);
+  };
+
+  Lightbox.prototype.imageCountLabel = function(currentImageNum, totalImages) {
+    return this.options.albumLabel.replace(/%1/g, currentImageNum).replace(/%2/g, totalImages);
+  };
+
+  Lightbox.prototype.init = function() {
+    var self = this;
+    // Both enable and build methods require the body tag to be in the DOM.
+    $(document).ready(function() {
+      self.enable();
+      self.build();
+    });
+  };
+
+  // Loop through anchors and areamaps looking for either data-lightbox attributes or rel attributes
+  // that contain 'lightbox'. When these are clicked, start lightbox.
+  Lightbox.prototype.enable = function() {
+    var self = this;
+    $('body').on('click', 'a[rel^=lightbox], area[rel^=lightbox], a[data-lightbox], area[data-lightbox]', function(event) {
+      self.start($(event.currentTarget));
+      return false;
+    });
+  };
+
+  // Build html for the lightbox and the overlay.
+  // Attach event handlers to the new DOM elements. click click click
+  Lightbox.prototype.build = function() {
+    var self = this;
+    $('<div id="lightboxOverlay" class="lightboxOverlay"></div><div id="lightbox" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" /><div class="lb-nav"><a class="lb-prev" href="" ></a><a class="lb-next" href="" ></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div>').appendTo($('body'));
+
+    // Cache jQuery objects
+    this.$lightbox       = $('#lightbox');
+    this.$overlay        = $('#lightboxOverlay');
+    this.$outerContainer = this.$lightbox.find('.lb-outerContainer');
+    this.$container      = this.$lightbox.find('.lb-container');
+    this.$image          = this.$lightbox.find('.lb-image');
+    this.$nav            = this.$lightbox.find('.lb-nav');
+
+    // Store css values for future lookup
+    this.containerPadding = {
+      top: parseInt(this.$container.css('padding-top'), 10),
+      right: parseInt(this.$container.css('padding-right'), 10),
+      bottom: parseInt(this.$container.css('padding-bottom'), 10),
+      left: parseInt(this.$container.css('padding-left'), 10)
+    };
+
+    this.imageBorderWidth = {
+      top: parseInt(this.$image.css('border-top-width'), 10),
+      right: parseInt(this.$image.css('border-right-width'), 10),
+      bottom: parseInt(this.$image.css('border-bottom-width'), 10),
+      left: parseInt(this.$image.css('border-left-width'), 10)
+    };
+
+    // Attach event handlers to the newly minted DOM elements
+    this.$overlay.hide().on('click', function() {
+      self.end();
+      return false;
+    });
+
+    this.$lightbox.hide().on('click', function(event) {
+      if ($(event.target).attr('id') === 'lightbox') {
+        self.end();
+      }
+      return false;
+    });
+
+    this.$outerContainer.on('click', function(event) {
+      if ($(event.target).attr('id') === 'lightbox') {
+        self.end();
+      }
+      return false;
+    });
+
+    this.$lightbox.find('.lb-prev').on('click', function() {
+      if (self.currentImageIndex === 0) {
+        self.changeImage(self.album.length - 1);
+      } else {
+        self.changeImage(self.currentImageIndex - 1);
+      }
+      return false;
+    });
+
+    this.$lightbox.find('.lb-next').on('click', function() {
+      if (self.currentImageIndex === self.album.length - 1) {
+        self.changeImage(0);
+      } else {
+        self.changeImage(self.currentImageIndex + 1);
+      }
+      return false;
+    });
+
+    /*
+      Show context menu for image on right-click
+
+      There is a div containing the navigation that spans the entire image and lives above of it. If
+      you right-click, you are right clicking this div and not the image. This prevents users from
+      saving the image or using other context menu actions with the image.
+
+      To fix this, when we detect the right mouse button is pressed down, but not yet clicked, we
+      set pointer-events to none on the nav div. This is so that the upcoming right-click event on
+      the next mouseup will bubble down to the image. Once the right-click/contextmenu event occurs
+      we set the pointer events back to auto for the nav div so it can capture hover and left-click
+      events as usual.
+     */
+    this.$nav.on('mousedown', function(event) {
+      if (event.which === 3) {
+        self.$nav.css('pointer-events', 'none');
+
+        self.$lightbox.one('contextmenu', function() {
+          setTimeout(function() {
+              this.$nav.css('pointer-events', 'auto');
+          }.bind(self), 0);
+        });
+      }
+    });
+
+
+    this.$lightbox.find('.lb-loader, .lb-close').on('click', function() {
+      self.end();
+      return false;
+    });
+  };
+
+  // Show overlay and lightbox. If the image is part of a set, add siblings to album array.
+  Lightbox.prototype.start = function($link) {
+    var self    = this;
+    var $window = $(window);
+
+    $window.on('resize', $.proxy(this.sizeOverlay, this));
+
+    $('select, object, embed').css({
+      visibility: 'hidden'
+    });
+
+    this.sizeOverlay();
+
+    this.album = [];
+    var imageNumber = 0;
+
+    function addToAlbum($link) {
+      self.album.push({
+        link: $link.attr('href'),
+        title: $link.attr('data-title') || $link.attr('title')
+      });
+    }
+
+    // Support both data-lightbox attribute and rel attribute implementations
+    var dataLightboxValue = $link.attr('data-lightbox');
+    var $links;
+
+    if (dataLightboxValue) {
+      $links = $($link.prop('tagName') + '[data-lightbox="' + dataLightboxValue + '"]');
+      for (var i = 0; i < $links.length; i = ++i) {
+        addToAlbum($($links[i]));
+        if ($links[i] === $link[0]) {
+          imageNumber = i;
+        }
+      }
+    } else {
+      if ($link.attr('rel') === 'lightbox') {
+        // If image is not part of a set
+        addToAlbum($link);
+      } else {
+        // If image is part of a set
+        $links = $($link.prop('tagName') + '[rel="' + $link.attr('rel') + '"]');
+        for (var j = 0; j < $links.length; j = ++j) {
+          addToAlbum($($links[j]));
+          if ($links[j] === $link[0]) {
+            imageNumber = j;
+          }
+        }
+      }
+    }
+
+    // Position Lightbox
+    var top  = $window.scrollTop() + this.options.positionFromTop;
+    var left = $window.scrollLeft();
+    this.$lightbox.css({
+      top: top + 'px',
+      left: left + 'px'
+    }).fadeIn(this.options.fadeDuration);
+
+    // Disable scrolling of the page while open
+    if (this.options.disableScrolling) {
+      $('body').addClass('lb-disable-scrolling');
+    }
+
+    this.changeImage(imageNumber);
+  };
+
+  // Hide most UI elements in preparation for the animated resizing of the lightbox.
+  Lightbox.prototype.changeImage = function(imageNumber) {
+    var self = this;
+
+    this.disableKeyboardNav();
+    var $image = this.$lightbox.find('.lb-image');
+
+    this.$overlay.fadeIn(this.options.fadeDuration);
+
+    $('.lb-loader').fadeIn('slow');
+    this.$lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
+
+    this.$outerContainer.addClass('animating');
+
+    // When image to show is preloaded, we send the width and height to sizeContainer()
+    var preloader = new Image();
+    preloader.onload = function() {
+      var $preloader;
+      var imageHeight;
+      var imageWidth;
+      var maxImageHeight;
+      var maxImageWidth;
+      var windowHeight;
+      var windowWidth;
+
+      $image.attr('src', self.album[imageNumber].link);
+
+      $preloader = $(preloader);
+
+      $image.width(preloader.width);
+      $image.height(preloader.height);
+
+      if (self.options.fitImagesInViewport) {
+        // Fit image inside the viewport.
+        // Take into account the border around the image and an additional 10px gutter on each side.
+
+        windowWidth    = $(window).width();
+        windowHeight   = $(window).height();
+        maxImageWidth  = windowWidth - self.containerPadding.left - self.containerPadding.right - self.imageBorderWidth.left - self.imageBorderWidth.right - 20;
+        maxImageHeight = windowHeight - self.containerPadding.top - self.containerPadding.bottom - self.imageBorderWidth.top - self.imageBorderWidth.bottom - 120;
+
+        // Check if image size is larger then maxWidth|maxHeight in settings
+        if (self.options.maxWidth && self.options.maxWidth < maxImageWidth) {
+          maxImageWidth = self.options.maxWidth;
+        }
+        if (self.options.maxHeight && self.options.maxHeight < maxImageWidth) {
+          maxImageHeight = self.options.maxHeight;
+        }
+
+        // Is there a fitting issue?
+        if ((preloader.width > maxImageWidth) || (preloader.height > maxImageHeight)) {
+          if ((preloader.width / maxImageWidth) > (preloader.height / maxImageHeight)) {
+            imageWidth  = maxImageWidth;
+            imageHeight = parseInt(preloader.height / (preloader.width / imageWidth), 10);
+            $image.width(imageWidth);
+            $image.height(imageHeight);
+          } else {
+            imageHeight = maxImageHeight;
+            imageWidth = parseInt(preloader.width / (preloader.height / imageHeight), 10);
+            $image.width(imageWidth);
+            $image.height(imageHeight);
+          }
+        }
+      }
+      self.sizeContainer($image.width(), $image.height());
+    };
+
+    preloader.src          = this.album[imageNumber].link;
+    this.currentImageIndex = imageNumber;
+  };
+
+  // Stretch overlay to fit the viewport
+  Lightbox.prototype.sizeOverlay = function() {
+    this.$overlay
+      .width($(document).width())
+      .height($(document).height());
+  };
+
+  // Animate the size of the lightbox to fit the image we are showing
+  Lightbox.prototype.sizeContainer = function(imageWidth, imageHeight) {
+    var self = this;
+
+    var oldWidth  = this.$outerContainer.outerWidth();
+    var oldHeight = this.$outerContainer.outerHeight();
+    var newWidth  = imageWidth + this.containerPadding.left + this.containerPadding.right + this.imageBorderWidth.left + this.imageBorderWidth.right;
+    var newHeight = imageHeight + this.containerPadding.top + this.containerPadding.bottom + this.imageBorderWidth.top + this.imageBorderWidth.bottom;
+
+    function postResize() {
+      self.$lightbox.find('.lb-dataContainer').width(newWidth);
+      self.$lightbox.find('.lb-prevLink').height(newHeight);
+      self.$lightbox.find('.lb-nextLink').height(newHeight);
+      self.showImage();
+    }
+
+    if (oldWidth !== newWidth || oldHeight !== newHeight) {
+      this.$outerContainer.animate({
+        width: newWidth,
+        height: newHeight
+      }, this.options.resizeDuration, 'swing', function() {
+        postResize();
+      });
+    } else {
+      postResize();
+    }
+  };
+
+  // Display the image and its details and begin preload neighboring images.
+  Lightbox.prototype.showImage = function() {
+    this.$lightbox.find('.lb-loader').stop(true).hide();
+    this.$lightbox.find('.lb-image').fadeIn(this.options.imageFadeDuration);
+
+    this.updateNav();
+    this.updateDetails();
+    this.preloadNeighboringImages();
+    this.enableKeyboardNav();
+  };
+
+  // Display previous and next navigation if appropriate.
+  Lightbox.prototype.updateNav = function() {
+    // Check to see if the browser supports touch events. If so, we take the conservative approach
+    // and assume that mouse hover events are not supported and always show prev/next navigation
+    // arrows in image sets.
+    var alwaysShowNav = false;
+    try {
+      document.createEvent('TouchEvent');
+      alwaysShowNav = (this.options.alwaysShowNavOnTouchDevices) ? true : false;
+    } catch (e) {}
+
+    this.$lightbox.find('.lb-nav').show();
+
+    if (this.album.length > 1) {
+      if (this.options.wrapAround) {
+        if (alwaysShowNav) {
+          this.$lightbox.find('.lb-prev, .lb-next').css('opacity', '1');
+        }
+        this.$lightbox.find('.lb-prev, .lb-next').show();
+      } else {
+        if (this.currentImageIndex > 0) {
+          this.$lightbox.find('.lb-prev').show();
+          if (alwaysShowNav) {
+            this.$lightbox.find('.lb-prev').css('opacity', '1');
+          }
+        }
+        if (this.currentImageIndex < this.album.length - 1) {
+          this.$lightbox.find('.lb-next').show();
+          if (alwaysShowNav) {
+            this.$lightbox.find('.lb-next').css('opacity', '1');
+          }
+        }
+      }
+    }
+  };
+
+  // Display caption, image number, and closing button.
+  Lightbox.prototype.updateDetails = function() {
+    var self = this;
+
+    // Enable anchor clicks in the injected caption html.
+    // Thanks Nate Wright for the fix. @https://github.com/NateWr
+    if (typeof this.album[this.currentImageIndex].title !== 'undefined' &&
+      this.album[this.currentImageIndex].title !== '') {
+      var $caption = this.$lightbox.find('.lb-caption');
+      if (this.options.sanitizeTitle) {
+        $caption.text(this.album[this.currentImageIndex].title);
+      } else {
+        $caption.html(this.album[this.currentImageIndex].title);
+      }
+      $caption.fadeIn('fast')
+        .find('a').on('click', function(event) {
+          if ($(this).attr('target') !== undefined) {
+            window.open($(this).attr('href'), $(this).attr('target'));
+          } else {
+            location.href = $(this).attr('href');
+          }
+        });
+    }
+
+    if (this.album.length > 1 && this.options.showImageNumberLabel) {
+      var labelText = this.imageCountLabel(this.currentImageIndex + 1, this.album.length);
+      this.$lightbox.find('.lb-number').text(labelText).fadeIn('fast');
+    } else {
+      this.$lightbox.find('.lb-number').hide();
+    }
+
+    this.$outerContainer.removeClass('animating');
+
+    this.$lightbox.find('.lb-dataContainer').fadeIn(this.options.resizeDuration, function() {
+      return self.sizeOverlay();
+    });
+  };
+
+  // Preload previous and next images in set.
+  Lightbox.prototype.preloadNeighboringImages = function() {
+    if (this.album.length > this.currentImageIndex + 1) {
+      var preloadNext = new Image();
+      preloadNext.src = this.album[this.currentImageIndex + 1].link;
+    }
+    if (this.currentImageIndex > 0) {
+      var preloadPrev = new Image();
+      preloadPrev.src = this.album[this.currentImageIndex - 1].link;
+    }
+  };
+
+  Lightbox.prototype.enableKeyboardNav = function() {
+    $(document).on('keyup.keyboard', $.proxy(this.keyboardAction, this));
+  };
+
+  Lightbox.prototype.disableKeyboardNav = function() {
+    $(document).off('.keyboard');
+  };
+
+  Lightbox.prototype.keyboardAction = function(event) {
+    var KEYCODE_ESC        = 27;
+    var KEYCODE_LEFTARROW  = 37;
+    var KEYCODE_RIGHTARROW = 39;
+
+    var keycode = event.keyCode;
+    var key     = String.fromCharCode(keycode).toLowerCase();
+    if (keycode === KEYCODE_ESC || key.match(/x|o|c/)) {
+      this.end();
+    } else if (key === 'p' || keycode === KEYCODE_LEFTARROW) {
+      if (this.currentImageIndex !== 0) {
+        this.changeImage(this.currentImageIndex - 1);
+      } else if (this.options.wrapAround && this.album.length > 1) {
+        this.changeImage(this.album.length - 1);
+      }
+    } else if (key === 'n' || keycode === KEYCODE_RIGHTARROW) {
+      if (this.currentImageIndex !== this.album.length - 1) {
+        this.changeImage(this.currentImageIndex + 1);
+      } else if (this.options.wrapAround && this.album.length > 1) {
+        this.changeImage(0);
+      }
+    }
+  };
+
+  // Closing time. :-(
+  Lightbox.prototype.end = function() {
+    this.disableKeyboardNav();
+    $(window).off('resize', this.sizeOverlay);
+    this.$lightbox.fadeOut(this.options.fadeDuration);
+    this.$overlay.fadeOut(this.options.fadeDuration);
+    $('select, object, embed').css({
+      visibility: 'visible'
+    });
+    if (this.options.disableScrolling) {
+      $('body').removeClass('lb-disable-scrolling');
+    }
+  };
+
+  return new Lightbox();
+}));
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__(0);
+
+var navHeight = $('.navbar').height();
+var navbar = $('.navbar.navbar-default');
+var body = $('body');
+var buttonNavbarToggle = $('button.navbar-toggle');
+var windowHeight = $(window).height();
+var windowWidth = $(window).width();
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+//-- Funciones Globales --------------------------------------------------------
+
+/* Checkear el ancho de la ventana para saber si es Mobile */
+function checkWidth() {
+
+  if ( windowWidth <= 414) {
+    return true;
+  }
+
+  else {
+    return false;
+  }
+}
+
+/* Checkear si es Tablet */
+function isTablet() {
+  var calcAspectRatio = windowHeight / windowWidth;
+  var aspectRatio = calcAspectRatio.toFixed(2);
+
+  if ( windowHeight > windowWidth) {
+    if ( aspectRatio == 1.33) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}
+
+function calcularPadding(element) {
+  var elementHeight = $(element).height();
+  var elementMargin = (navHeight - elementHeight) / 2 + 'px';
+  $(element).css({'padding-top': elementMargin, 'padding-bottom': elementMargin });
+}
+
+
+//-- Funciones para Elementos animados con Animate.css -------------------------
+function fadeElement(element, animation) {
+  $(element).css('opacity', 0);
+  $(element).each(function() {
+      $(this).waypoint(function() {
+          $(this.element).addClass('animated').addClass(animation);
+      },
+      { offset: '80%'});
+  });
+}
+
+function fadeElementOffset(element, animation, offsetvalue) {
+  $(element).css('opacity', 0);
+  $(element).each(function() {
+      $(this).waypoint(function() {
+          $(this.element).addClass('animated').addClass(animation);
+      },
+      { offset: offsetvalue
+    });
+  });
+}
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__(0);
+
+
+
+//------------------------------------------------------------------------------
+// VueJS
+//------------------------------------------------------------------------------
+
+//-- Template ------------------------------------------------------------------
+Vue.component('navbar', {
+  template: `
+      <div class="container">
+          <div class="navbar-header page-scroll">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+              <a class="navbar-brand page-scroll" href="#page-top"><span class="sr-only">Masterplan</span><img src="https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/logo.png" srcset="https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/logo@2x.png 2x" alt="Masterplan"></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                  <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                  <li class="hidden">
+                      <a class="page-scroll" href="#page-top"></a>
+                  </li>
+                  <li><a class="page-scroll" href="#section-hero">Inicio</a></li>
+                  <li><a class="page-scroll" href="#section-tipos">Tipos</a></li>
+                  <li><a class="page-scroll" href="#section-domotica">Domótica</a></li>
+                  <li><a class="page-scroll" href="#section-map">Ubicación</a></li>
+                  <li><a class="page-scroll" href="#section-contacto">Contacto</a></li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>`
+});
+
+var navVue = new Vue({
+  el: '#v-navbar'
+});
+
+
+//------------------------------------------------------------------------------
+// Top en el Nav
+//------------------------------------------------------------------------------
+
+var navHeight = $('#v-navbar').height();
+
+if ( $(window).width() > 768 ) {
+  $('body').css({
+    'margin-top': navHeight + 'px'
+  });
+}
+
+function calcularMargin(element) {
+  var elementHeight = $(element).height();
+  var elementMargin = (navHeight - elementHeight) / 2 + 'px';
+  $(element).css({'margin-top': elementMargin, 'margin-bottom': elementMargin });
+}
+
+calcularMargin('.navbar-toggle');
+//------
+// jQuery to collapse the navbar on scroll
+//------
+
+$(window).scroll(function() {
+    if ($(".navbar").offset().top > 50) {
+        $(".navbar-fixed-top").addClass("top-nav-collapse");
+    } else {
+        $(".navbar-fixed-top").removeClass("top-nav-collapse");
+    }
+});
+
+//jQuery for page scrolling feature - requires jQuery Easing plugin
+$(function() {
+    $('a.page-scroll').bind('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1500, 'easeInOutExpo');
+        event.preventDefault();
+    });
+});
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__(0);
+
+$('#section-tipos .dropdown-menu > li').on('click', function () {
+$('#section-tipos .dropdown-menu > li').toggleClass('active').siblings().removeClass('active').attr('aria-expanded', 'false');
+});
+
+$(document).on('load', function () {
+  $('#511 .panoramica').html('Prueba');
+});
+
+//------------------------------------------------------------------------------
+// VueJS
+//------------------------------------------------------------------------------
+
+var deptos = new Vue({
+  el: '#section-tipos',
+  data: {
+    deptos: [
+      {
+        id: '101a401',
+        class: 'tab-pane active',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/101a401.jpg',
+        title: 'Departamentos 101 a 401',
+        desc: '3 Dormitorios / 1 en suite - 2 Baños completos - Walking closet - Baño visita - Espaciosa cocina equipada - Sala de estar - 2 terrazas',
+        nota: '* Depto. 101 con gradas en 1er nivel',
+        util: '136.28',
+        terraza: '28.07',
+        total: '164.35'
+      },
+      {
+        id: '102a502',
+        class: 'tab-pane',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/102a502.jpg',
+        title: 'Departamentos 102 a 502',
+        desc: '2 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - 2 terrazas',
+        nota: '* PRIMER PISO ALTURA DE PISO A CIELO 2.90 M. SEGUNDO A QUINTO PISO ALTURA DE 2.60 M.',
+        util: '90.89',
+        terraza: '16.89',
+        total: '107.78'
+      },
+      {
+        id: '103a503',
+        class: 'tab-pane',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/103a503.jpg',
+        title: 'Departamentos 103 a 503',
+        desc: '2 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - 2 terrazas',
+        nota: '* PRIMER PISO ALTURA DE PISO A CIELO 2.90 M. SEGUNDO A QUINTO PISO ALTURA DE 2.60 M.',
+        util: '84.95',
+        terraza: '18.40',
+        total: '103.35'
+      },
+      {
+        id: '104a404',
+        class: 'tab-pane',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/104a404.jpg',
+        title: 'Departamentos 104 a 404',
+        desc: '3 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - Baño de visita - Sala de estar - 2 terrazas',
+        nota: '* DEPTO 104 CON GRADAS EN 1ER NIVEL.',
+        util: '140.02',
+        terraza: '24.6',
+        total: '164.62'
+      },
+      {
+        id: '504',
+        class: 'tab-pane',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/504-01.jpg',
+        title: 'Departamentos 504',
+        desc: `3 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - Baño visita - Sala de estar - 2 terrazas - Terraza panorámica de uso exclusivo`,
+        util: '140.02',
+        terraza: '24.6',
+        total: '190.85',
+        panoramica: 'Superfice Terraza Panorámica: 26.23 M2'
+
+      },
+      {
+        id: '511',
+        class: 'tab-pane',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/511-01.jpg',
+        title: 'Departamentos 511',
+        desc: '3 dormitorios / 1 en suite - 3 baños completos - Walking closet - Baño visita - Sala de estar - Espaciosa cocina equipada - Amplia terraza - terraza panorámica de uso exclusivo',
+        util: '1238.32',
+        terraza: '26.13',
+        total: '192.46',
+        panoramica: 'Superfice Terraza Panorámica: 28.01 M2'
+      },
+    ],
+  },
+
+});
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var vue = __webpack_require__(9);
+var domotica = new Vue({
+  el: '#productos',
+  data: {
+    productos: [
+      {
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/hcl.jpg',
+        title: 'Home Center Lite',
+        cant: '1 Unidad',
+        desc: 'Controlador principal del sistema FIBARO',
+        link: 'https://tuhogarinteligente.cl/home-center-lite/'
+      },
+      {
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/smoke-sensor.jpg',
+        title: 'Smoke Sensor',
+        cant: '1 Unidad',
+        desc: 'Detecta humo y cambios drásticos de temperatura, activando la alarma.',
+        link: 'https://tuhogarinteligente.cl/sensor-de-humo/'
+      },
+      {
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/motion-sensor.jpg',
+        title: 'Motion Sensor',
+        cant: '1 Unidad',
+        desc: 'Detecta el más mínimo movimiento, temperatura, vibración e intensidad de luz.',
+        link: 'https://tuhogarinteligente.cl/sensor-de-movimiento/'
+      },
+      {
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/dw-sensor.jpg',
+        title: 'Door / Window Sensor',
+        cant: '1 Unidad',
+        desc: 'Detecta apertura de ventanas y puertas. Informa al controlador y envía una notificación a su dispositivo móvil.',
+        link: 'https://tuhogarinteligente.cl/sensor-puerta-ventana/'
+      },
+
+    ],
+  }
+});
+
+
+// $('.hero__cta > a').on('click', function (e) {
+//   e.preventDefault();
+//   $('#form-cotizacion').modal();
+// });
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17757,2638 +18774,10 @@ setTimeout(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17), __webpack_require__(18)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var $             = __webpack_require__(0);
-var jqueryEasing  = __webpack_require__(3);
-var bootstrap     = __webpack_require__(4);
-var vue           = __webpack_require__(1);
-var lightbox2   = __webpack_require__(19);
-
-var variables   = __webpack_require__(20);
-var functions   = __webpack_require__(21);
-var navbar      = __webpack_require__(22);
-var tipos       = __webpack_require__(23);
-var domotica    = __webpack_require__(24);
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
- * jQuery Easing v1.4.1 - http://gsgd.co.uk/sandbox/jquery/easing/
- * Open source under the BSD License.
- * Copyright © 2008 George McGinley Smith
- * All rights reserved.
- * https://raw.github.com/gdsmith/jquery-easing/master/LICENSE
-*/
-
-(function (factory) {
-	if (true) {
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($) {
-			return factory($);
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else if (typeof module === "object" && typeof module.exports === "object") {
-		exports = factory(require('jquery'));
-	} else {
-		factory(jQuery);
-	}
-})(function($){
-
-// Preserve the original jQuery "swing" easing as "jswing"
-$.easing.jswing = $.easing.swing;
-
-var pow = Math.pow,
-	sqrt = Math.sqrt,
-	sin = Math.sin,
-	cos = Math.cos,
-	PI = Math.PI,
-	c1 = 1.70158,
-	c2 = c1 * 1.525,
-	c3 = c1 + 1,
-	c4 = ( 2 * PI ) / 3,
-	c5 = ( 2 * PI ) / 4.5;
-
-// x is the fraction of animation progress, in the range 0..1
-function bounceOut(x) {
-	var n1 = 7.5625,
-		d1 = 2.75;
-	if ( x < 1/d1 ) {
-		return n1*x*x;
-	} else if ( x < 2/d1 ) {
-		return n1*(x-=(1.5/d1))*x + 0.75;
-	} else if ( x < 2.5/d1 ) {
-		return n1*(x-=(2.25/d1))*x + 0.9375;
-	} else {
-		return n1*(x-=(2.625/d1))*x + 0.984375;
-	}
-}
-
-$.extend( $.easing,
-{
-	def: 'easeOutQuad',
-	swing: function (x) {
-		return $.easing[$.easing.def](x);
-	},
-	easeInQuad: function (x) {
-		return x * x;
-	},
-	easeOutQuad: function (x) {
-		return 1 - ( 1 - x ) * ( 1 - x );
-	},
-	easeInOutQuad: function (x) {
-		return x < 0.5 ?
-			2 * x * x :
-			1 - pow( -2 * x + 2, 2 ) / 2;
-	},
-	easeInCubic: function (x) {
-		return x * x * x;
-	},
-	easeOutCubic: function (x) {
-		return 1 - pow( 1 - x, 3 );
-	},
-	easeInOutCubic: function (x) {
-		return x < 0.5 ?
-			4 * x * x * x :
-			1 - pow( -2 * x + 2, 3 ) / 2;
-	},
-	easeInQuart: function (x) {
-		return x * x * x * x;
-	},
-	easeOutQuart: function (x) {
-		return 1 - pow( 1 - x, 4 );
-	},
-	easeInOutQuart: function (x) {
-		return x < 0.5 ?
-			8 * x * x * x * x :
-			1 - pow( -2 * x + 2, 4 ) / 2;
-	},
-	easeInQuint: function (x) {
-		return x * x * x * x * x;
-	},
-	easeOutQuint: function (x) {
-		return 1 - pow( 1 - x, 5 );
-	},
-	easeInOutQuint: function (x) {
-		return x < 0.5 ?
-			16 * x * x * x * x * x :
-			1 - pow( -2 * x + 2, 5 ) / 2;
-	},
-	easeInSine: function (x) {
-		return 1 - cos( x * PI/2 );
-	},
-	easeOutSine: function (x) {
-		return sin( x * PI/2 );
-	},
-	easeInOutSine: function (x) {
-		return -( cos( PI * x ) - 1 ) / 2;
-	},
-	easeInExpo: function (x) {
-		return x === 0 ? 0 : pow( 2, 10 * x - 10 );
-	},
-	easeOutExpo: function (x) {
-		return x === 1 ? 1 : 1 - pow( 2, -10 * x );
-	},
-	easeInOutExpo: function (x) {
-		return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ?
-			pow( 2, 20 * x - 10 ) / 2 :
-			( 2 - pow( 2, -20 * x + 10 ) ) / 2;
-	},
-	easeInCirc: function (x) {
-		return 1 - sqrt( 1 - pow( x, 2 ) );
-	},
-	easeOutCirc: function (x) {
-		return sqrt( 1 - pow( x - 1, 2 ) );
-	},
-	easeInOutCirc: function (x) {
-		return x < 0.5 ?
-			( 1 - sqrt( 1 - pow( 2 * x, 2 ) ) ) / 2 :
-			( sqrt( 1 - pow( -2 * x + 2, 2 ) ) + 1 ) / 2;
-	},
-	easeInElastic: function (x) {
-		return x === 0 ? 0 : x === 1 ? 1 :
-			-pow( 2, 10 * x - 10 ) * sin( ( x * 10 - 10.75 ) * c4 );
-	},
-	easeOutElastic: function (x) {
-		return x === 0 ? 0 : x === 1 ? 1 :
-			pow( 2, -10 * x ) * sin( ( x * 10 - 0.75 ) * c4 ) + 1;
-	},
-	easeInOutElastic: function (x) {
-		return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ?
-			-( pow( 2, 20 * x - 10 ) * sin( ( 20 * x - 11.125 ) * c5 )) / 2 :
-			pow( 2, -20 * x + 10 ) * sin( ( 20 * x - 11.125 ) * c5 ) / 2 + 1;
-	},
-	easeInBack: function (x) {
-		return c3 * x * x * x - c1 * x * x;
-	},
-	easeOutBack: function (x) {
-		return 1 + c3 * pow( x - 1, 3 ) + c1 * pow( x - 1, 2 );
-	},
-	easeInOutBack: function (x) {
-		return x < 0.5 ?
-			( pow( 2 * x, 2 ) * ( ( c2 + 1 ) * 2 * x - c2 ) ) / 2 :
-			( pow( 2 * x - 2, 2 ) *( ( c2 + 1 ) * ( x * 2 - 2 ) + c2 ) + 2 ) / 2;
-	},
-	easeInBounce: function (x) {
-		return 1 - bounceOut( 1 - x );
-	},
-	easeOutBounce: bounceOut,
-	easeInOutBounce: function (x) {
-		return x < 0.5 ?
-			( 1 - bounceOut( 1 - 2 * x ) ) / 2 :
-			( 1 + bounceOut( 2 * x - 1 ) ) / 2;
-	}
-});
-
-});
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
-__webpack_require__(5)
-__webpack_require__(6)
-__webpack_require__(7)
-__webpack_require__(8)
-__webpack_require__(9)
-__webpack_require__(10)
-__webpack_require__(11)
-__webpack_require__(12)
-__webpack_require__(13)
-__webpack_require__(14)
-__webpack_require__(15)
-__webpack_require__(16)
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: transition.js v3.3.7
- * http://getbootstrap.com/javascript/#transitions
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
-  // ============================================================
-
-  function transitionEnd() {
-    var el = document.createElement('bootstrap')
-
-    var transEndEventNames = {
-      WebkitTransition : 'webkitTransitionEnd',
-      MozTransition    : 'transitionend',
-      OTransition      : 'oTransitionEnd otransitionend',
-      transition       : 'transitionend'
-    }
-
-    for (var name in transEndEventNames) {
-      if (el.style[name] !== undefined) {
-        return { end: transEndEventNames[name] }
-      }
-    }
-
-    return false // explicit for ie8 (  ._.)
-  }
-
-  // http://blog.alexmaccaw.com/css-transitions
-  $.fn.emulateTransitionEnd = function (duration) {
-    var called = false
-    var $el = this
-    $(this).one('bsTransitionEnd', function () { called = true })
-    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
-    setTimeout(callback, duration)
-    return this
-  }
-
-  $(function () {
-    $.support.transition = transitionEnd()
-
-    if (!$.support.transition) return
-
-    $.event.special.bsTransitionEnd = {
-      bindType: $.support.transition.end,
-      delegateType: $.support.transition.end,
-      handle: function (e) {
-        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
-      }
-    }
-  })
-
-}(jQuery);
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: alert.js v3.3.7
- * http://getbootstrap.com/javascript/#alerts
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // ALERT CLASS DEFINITION
-  // ======================
-
-  var dismiss = '[data-dismiss="alert"]'
-  var Alert   = function (el) {
-    $(el).on('click', dismiss, this.close)
-  }
-
-  Alert.VERSION = '3.3.7'
-
-  Alert.TRANSITION_DURATION = 150
-
-  Alert.prototype.close = function (e) {
-    var $this    = $(this)
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
-
-    var $parent = $(selector === '#' ? [] : selector)
-
-    if (e) e.preventDefault()
-
-    if (!$parent.length) {
-      $parent = $this.closest('.alert')
-    }
-
-    $parent.trigger(e = $.Event('close.bs.alert'))
-
-    if (e.isDefaultPrevented()) return
-
-    $parent.removeClass('in')
-
-    function removeElement() {
-      // detach from parent, fire event then clean up data
-      $parent.detach().trigger('closed.bs.alert').remove()
-    }
-
-    $.support.transition && $parent.hasClass('fade') ?
-      $parent
-        .one('bsTransitionEnd', removeElement)
-        .emulateTransitionEnd(Alert.TRANSITION_DURATION) :
-      removeElement()
-  }
-
-
-  // ALERT PLUGIN DEFINITION
-  // =======================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.alert')
-
-      if (!data) $this.data('bs.alert', (data = new Alert(this)))
-      if (typeof option == 'string') data[option].call($this)
-    })
-  }
-
-  var old = $.fn.alert
-
-  $.fn.alert             = Plugin
-  $.fn.alert.Constructor = Alert
-
-
-  // ALERT NO CONFLICT
-  // =================
-
-  $.fn.alert.noConflict = function () {
-    $.fn.alert = old
-    return this
-  }
-
-
-  // ALERT DATA-API
-  // ==============
-
-  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
-
-}(jQuery);
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: button.js v3.3.7
- * http://getbootstrap.com/javascript/#buttons
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // BUTTON PUBLIC CLASS DEFINITION
-  // ==============================
-
-  var Button = function (element, options) {
-    this.$element  = $(element)
-    this.options   = $.extend({}, Button.DEFAULTS, options)
-    this.isLoading = false
-  }
-
-  Button.VERSION  = '3.3.7'
-
-  Button.DEFAULTS = {
-    loadingText: 'loading...'
-  }
-
-  Button.prototype.setState = function (state) {
-    var d    = 'disabled'
-    var $el  = this.$element
-    var val  = $el.is('input') ? 'val' : 'html'
-    var data = $el.data()
-
-    state += 'Text'
-
-    if (data.resetText == null) $el.data('resetText', $el[val]())
-
-    // push to event loop to allow forms to submit
-    setTimeout($.proxy(function () {
-      $el[val](data[state] == null ? this.options[state] : data[state])
-
-      if (state == 'loadingText') {
-        this.isLoading = true
-        $el.addClass(d).attr(d, d).prop(d, true)
-      } else if (this.isLoading) {
-        this.isLoading = false
-        $el.removeClass(d).removeAttr(d).prop(d, false)
-      }
-    }, this), 0)
-  }
-
-  Button.prototype.toggle = function () {
-    var changed = true
-    var $parent = this.$element.closest('[data-toggle="buttons"]')
-
-    if ($parent.length) {
-      var $input = this.$element.find('input')
-      if ($input.prop('type') == 'radio') {
-        if ($input.prop('checked')) changed = false
-        $parent.find('.active').removeClass('active')
-        this.$element.addClass('active')
-      } else if ($input.prop('type') == 'checkbox') {
-        if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
-        this.$element.toggleClass('active')
-      }
-      $input.prop('checked', this.$element.hasClass('active'))
-      if (changed) $input.trigger('change')
-    } else {
-      this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
-      this.$element.toggleClass('active')
-    }
-  }
-
-
-  // BUTTON PLUGIN DEFINITION
-  // ========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.button')
-      var options = typeof option == 'object' && option
-
-      if (!data) $this.data('bs.button', (data = new Button(this, options)))
-
-      if (option == 'toggle') data.toggle()
-      else if (option) data.setState(option)
-    })
-  }
-
-  var old = $.fn.button
-
-  $.fn.button             = Plugin
-  $.fn.button.Constructor = Button
-
-
-  // BUTTON NO CONFLICT
-  // ==================
-
-  $.fn.button.noConflict = function () {
-    $.fn.button = old
-    return this
-  }
-
-
-  // BUTTON DATA-API
-  // ===============
-
-  $(document)
-    .on('click.bs.button.data-api', '[data-toggle^="button"]', function (e) {
-      var $btn = $(e.target).closest('.btn')
-      Plugin.call($btn, 'toggle')
-      if (!($(e.target).is('input[type="radio"], input[type="checkbox"]'))) {
-        // Prevent double click on radios, and the double selections (so cancellation) on checkboxes
-        e.preventDefault()
-        // The target component still receive the focus
-        if ($btn.is('input,button')) $btn.trigger('focus')
-        else $btn.find('input:visible,button:visible').first().trigger('focus')
-      }
-    })
-    .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
-      $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
-    })
-
-}(jQuery);
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: carousel.js v3.3.7
- * http://getbootstrap.com/javascript/#carousel
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // CAROUSEL CLASS DEFINITION
-  // =========================
-
-  var Carousel = function (element, options) {
-    this.$element    = $(element)
-    this.$indicators = this.$element.find('.carousel-indicators')
-    this.options     = options
-    this.paused      = null
-    this.sliding     = null
-    this.interval    = null
-    this.$active     = null
-    this.$items      = null
-
-    this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
-
-    this.options.pause == 'hover' && !('ontouchstart' in document.documentElement) && this.$element
-      .on('mouseenter.bs.carousel', $.proxy(this.pause, this))
-      .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
-  }
-
-  Carousel.VERSION  = '3.3.7'
-
-  Carousel.TRANSITION_DURATION = 600
-
-  Carousel.DEFAULTS = {
-    interval: 5000,
-    pause: 'hover',
-    wrap: true,
-    keyboard: true
-  }
-
-  Carousel.prototype.keydown = function (e) {
-    if (/input|textarea/i.test(e.target.tagName)) return
-    switch (e.which) {
-      case 37: this.prev(); break
-      case 39: this.next(); break
-      default: return
-    }
-
-    e.preventDefault()
-  }
-
-  Carousel.prototype.cycle = function (e) {
-    e || (this.paused = false)
-
-    this.interval && clearInterval(this.interval)
-
-    this.options.interval
-      && !this.paused
-      && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
-
-    return this
-  }
-
-  Carousel.prototype.getItemIndex = function (item) {
-    this.$items = item.parent().children('.item')
-    return this.$items.index(item || this.$active)
-  }
-
-  Carousel.prototype.getItemForDirection = function (direction, active) {
-    var activeIndex = this.getItemIndex(active)
-    var willWrap = (direction == 'prev' && activeIndex === 0)
-                || (direction == 'next' && activeIndex == (this.$items.length - 1))
-    if (willWrap && !this.options.wrap) return active
-    var delta = direction == 'prev' ? -1 : 1
-    var itemIndex = (activeIndex + delta) % this.$items.length
-    return this.$items.eq(itemIndex)
-  }
-
-  Carousel.prototype.to = function (pos) {
-    var that        = this
-    var activeIndex = this.getItemIndex(this.$active = this.$element.find('.item.active'))
-
-    if (pos > (this.$items.length - 1) || pos < 0) return
-
-    if (this.sliding)       return this.$element.one('slid.bs.carousel', function () { that.to(pos) }) // yes, "slid"
-    if (activeIndex == pos) return this.pause().cycle()
-
-    return this.slide(pos > activeIndex ? 'next' : 'prev', this.$items.eq(pos))
-  }
-
-  Carousel.prototype.pause = function (e) {
-    e || (this.paused = true)
-
-    if (this.$element.find('.next, .prev').length && $.support.transition) {
-      this.$element.trigger($.support.transition.end)
-      this.cycle(true)
-    }
-
-    this.interval = clearInterval(this.interval)
-
-    return this
-  }
-
-  Carousel.prototype.next = function () {
-    if (this.sliding) return
-    return this.slide('next')
-  }
-
-  Carousel.prototype.prev = function () {
-    if (this.sliding) return
-    return this.slide('prev')
-  }
-
-  Carousel.prototype.slide = function (type, next) {
-    var $active   = this.$element.find('.item.active')
-    var $next     = next || this.getItemForDirection(type, $active)
-    var isCycling = this.interval
-    var direction = type == 'next' ? 'left' : 'right'
-    var that      = this
-
-    if ($next.hasClass('active')) return (this.sliding = false)
-
-    var relatedTarget = $next[0]
-    var slideEvent = $.Event('slide.bs.carousel', {
-      relatedTarget: relatedTarget,
-      direction: direction
-    })
-    this.$element.trigger(slideEvent)
-    if (slideEvent.isDefaultPrevented()) return
-
-    this.sliding = true
-
-    isCycling && this.pause()
-
-    if (this.$indicators.length) {
-      this.$indicators.find('.active').removeClass('active')
-      var $nextIndicator = $(this.$indicators.children()[this.getItemIndex($next)])
-      $nextIndicator && $nextIndicator.addClass('active')
-    }
-
-    var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
-    if ($.support.transition && this.$element.hasClass('slide')) {
-      $next.addClass(type)
-      $next[0].offsetWidth // force reflow
-      $active.addClass(direction)
-      $next.addClass(direction)
-      $active
-        .one('bsTransitionEnd', function () {
-          $next.removeClass([type, direction].join(' ')).addClass('active')
-          $active.removeClass(['active', direction].join(' '))
-          that.sliding = false
-          setTimeout(function () {
-            that.$element.trigger(slidEvent)
-          }, 0)
-        })
-        .emulateTransitionEnd(Carousel.TRANSITION_DURATION)
-    } else {
-      $active.removeClass('active')
-      $next.addClass('active')
-      this.sliding = false
-      this.$element.trigger(slidEvent)
-    }
-
-    isCycling && this.cycle()
-
-    return this
-  }
-
-
-  // CAROUSEL PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.carousel')
-      var options = $.extend({}, Carousel.DEFAULTS, $this.data(), typeof option == 'object' && option)
-      var action  = typeof option == 'string' ? option : options.slide
-
-      if (!data) $this.data('bs.carousel', (data = new Carousel(this, options)))
-      if (typeof option == 'number') data.to(option)
-      else if (action) data[action]()
-      else if (options.interval) data.pause().cycle()
-    })
-  }
-
-  var old = $.fn.carousel
-
-  $.fn.carousel             = Plugin
-  $.fn.carousel.Constructor = Carousel
-
-
-  // CAROUSEL NO CONFLICT
-  // ====================
-
-  $.fn.carousel.noConflict = function () {
-    $.fn.carousel = old
-    return this
-  }
-
-
-  // CAROUSEL DATA-API
-  // =================
-
-  var clickHandler = function (e) {
-    var href
-    var $this   = $(this)
-    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
-    if (!$target.hasClass('carousel')) return
-    var options = $.extend({}, $target.data(), $this.data())
-    var slideIndex = $this.attr('data-slide-to')
-    if (slideIndex) options.interval = false
-
-    Plugin.call($target, options)
-
-    if (slideIndex) {
-      $target.data('bs.carousel').to(slideIndex)
-    }
-
-    e.preventDefault()
-  }
-
-  $(document)
-    .on('click.bs.carousel.data-api', '[data-slide]', clickHandler)
-    .on('click.bs.carousel.data-api', '[data-slide-to]', clickHandler)
-
-  $(window).on('load', function () {
-    $('[data-ride="carousel"]').each(function () {
-      var $carousel = $(this)
-      Plugin.call($carousel, $carousel.data())
-    })
-  })
-
-}(jQuery);
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: collapse.js v3.3.7
- * http://getbootstrap.com/javascript/#collapse
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-/* jshint latedef: false */
-
-+function ($) {
-  'use strict';
-
-  // COLLAPSE PUBLIC CLASS DEFINITION
-  // ================================
-
-  var Collapse = function (element, options) {
-    this.$element      = $(element)
-    this.options       = $.extend({}, Collapse.DEFAULTS, options)
-    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
-                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
-    this.transitioning = null
-
-    if (this.options.parent) {
-      this.$parent = this.getParent()
-    } else {
-      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
-    }
-
-    if (this.options.toggle) this.toggle()
-  }
-
-  Collapse.VERSION  = '3.3.7'
-
-  Collapse.TRANSITION_DURATION = 350
-
-  Collapse.DEFAULTS = {
-    toggle: true
-  }
-
-  Collapse.prototype.dimension = function () {
-    var hasWidth = this.$element.hasClass('width')
-    return hasWidth ? 'width' : 'height'
-  }
-
-  Collapse.prototype.show = function () {
-    if (this.transitioning || this.$element.hasClass('in')) return
-
-    var activesData
-    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
-
-    if (actives && actives.length) {
-      activesData = actives.data('bs.collapse')
-      if (activesData && activesData.transitioning) return
-    }
-
-    var startEvent = $.Event('show.bs.collapse')
-    this.$element.trigger(startEvent)
-    if (startEvent.isDefaultPrevented()) return
-
-    if (actives && actives.length) {
-      Plugin.call(actives, 'hide')
-      activesData || actives.data('bs.collapse', null)
-    }
-
-    var dimension = this.dimension()
-
-    this.$element
-      .removeClass('collapse')
-      .addClass('collapsing')[dimension](0)
-      .attr('aria-expanded', true)
-
-    this.$trigger
-      .removeClass('collapsed')
-      .attr('aria-expanded', true)
-
-    this.transitioning = 1
-
-    var complete = function () {
-      this.$element
-        .removeClass('collapsing')
-        .addClass('collapse in')[dimension]('')
-      this.transitioning = 0
-      this.$element
-        .trigger('shown.bs.collapse')
-    }
-
-    if (!$.support.transition) return complete.call(this)
-
-    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
-
-    this.$element
-      .one('bsTransitionEnd', $.proxy(complete, this))
-      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
-  }
-
-  Collapse.prototype.hide = function () {
-    if (this.transitioning || !this.$element.hasClass('in')) return
-
-    var startEvent = $.Event('hide.bs.collapse')
-    this.$element.trigger(startEvent)
-    if (startEvent.isDefaultPrevented()) return
-
-    var dimension = this.dimension()
-
-    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
-
-    this.$element
-      .addClass('collapsing')
-      .removeClass('collapse in')
-      .attr('aria-expanded', false)
-
-    this.$trigger
-      .addClass('collapsed')
-      .attr('aria-expanded', false)
-
-    this.transitioning = 1
-
-    var complete = function () {
-      this.transitioning = 0
-      this.$element
-        .removeClass('collapsing')
-        .addClass('collapse')
-        .trigger('hidden.bs.collapse')
-    }
-
-    if (!$.support.transition) return complete.call(this)
-
-    this.$element
-      [dimension](0)
-      .one('bsTransitionEnd', $.proxy(complete, this))
-      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
-  }
-
-  Collapse.prototype.toggle = function () {
-    this[this.$element.hasClass('in') ? 'hide' : 'show']()
-  }
-
-  Collapse.prototype.getParent = function () {
-    return $(this.options.parent)
-      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
-      .each($.proxy(function (i, element) {
-        var $element = $(element)
-        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
-      }, this))
-      .end()
-  }
-
-  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
-    var isOpen = $element.hasClass('in')
-
-    $element.attr('aria-expanded', isOpen)
-    $trigger
-      .toggleClass('collapsed', !isOpen)
-      .attr('aria-expanded', isOpen)
-  }
-
-  function getTargetFromTrigger($trigger) {
-    var href
-    var target = $trigger.attr('data-target')
-      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
-
-    return $(target)
-  }
-
-
-  // COLLAPSE PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.collapse')
-      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
-
-      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
-      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.collapse
-
-  $.fn.collapse             = Plugin
-  $.fn.collapse.Constructor = Collapse
-
-
-  // COLLAPSE NO CONFLICT
-  // ====================
-
-  $.fn.collapse.noConflict = function () {
-    $.fn.collapse = old
-    return this
-  }
-
-
-  // COLLAPSE DATA-API
-  // =================
-
-  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
-    var $this   = $(this)
-
-    if (!$this.attr('data-target')) e.preventDefault()
-
-    var $target = getTargetFromTrigger($this)
-    var data    = $target.data('bs.collapse')
-    var option  = data ? 'toggle' : $this.data()
-
-    Plugin.call($target, option)
-  })
-
-}(jQuery);
-
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(10), __webpack_require__(11)))
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: dropdown.js v3.3.7
- * http://getbootstrap.com/javascript/#dropdowns
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // DROPDOWN CLASS DEFINITION
-  // =========================
-
-  var backdrop = '.dropdown-backdrop'
-  var toggle   = '[data-toggle="dropdown"]'
-  var Dropdown = function (element) {
-    $(element).on('click.bs.dropdown', this.toggle)
-  }
-
-  Dropdown.VERSION = '3.3.7'
-
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
-
-    var $parent = selector && $(selector)
-
-    return $parent && $parent.length ? $parent : $this.parent()
-  }
-
-  function clearMenus(e) {
-    if (e && e.which === 3) return
-    $(backdrop).remove()
-    $(toggle).each(function () {
-      var $this         = $(this)
-      var $parent       = getParent($this)
-      var relatedTarget = { relatedTarget: this }
-
-      if (!$parent.hasClass('open')) return
-
-      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
-
-      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this.attr('aria-expanded', 'false')
-      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
-    })
-  }
-
-  Dropdown.prototype.toggle = function (e) {
-    var $this = $(this)
-
-    if ($this.is('.disabled, :disabled')) return
-
-    var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
-
-    clearMenus()
-
-    if (!isActive) {
-      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
-        // if mobile we use a backdrop because click events don't delegate
-        $(document.createElement('div'))
-          .addClass('dropdown-backdrop')
-          .insertAfter($(this))
-          .on('click', clearMenus)
-      }
-
-      var relatedTarget = { relatedTarget: this }
-      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this
-        .trigger('focus')
-        .attr('aria-expanded', 'true')
-
-      $parent
-        .toggleClass('open')
-        .trigger($.Event('shown.bs.dropdown', relatedTarget))
-    }
-
-    return false
-  }
-
-  Dropdown.prototype.keydown = function (e) {
-    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
-
-    var $this = $(this)
-
-    e.preventDefault()
-    e.stopPropagation()
-
-    if ($this.is('.disabled, :disabled')) return
-
-    var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
-
-    if (!isActive && e.which != 27 || isActive && e.which == 27) {
-      if (e.which == 27) $parent.find(toggle).trigger('focus')
-      return $this.trigger('click')
-    }
-
-    var desc = ' li:not(.disabled):visible a'
-    var $items = $parent.find('.dropdown-menu' + desc)
-
-    if (!$items.length) return
-
-    var index = $items.index(e.target)
-
-    if (e.which == 38 && index > 0)                 index--         // up
-    if (e.which == 40 && index < $items.length - 1) index++         // down
-    if (!~index)                                    index = 0
-
-    $items.eq(index).trigger('focus')
-  }
-
-
-  // DROPDOWN PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.dropdown')
-
-      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
-      if (typeof option == 'string') data[option].call($this)
-    })
-  }
-
-  var old = $.fn.dropdown
-
-  $.fn.dropdown             = Plugin
-  $.fn.dropdown.Constructor = Dropdown
-
-
-  // DROPDOWN NO CONFLICT
-  // ====================
-
-  $.fn.dropdown.noConflict = function () {
-    $.fn.dropdown = old
-    return this
-  }
-
-
-  // APPLY TO STANDARD DROPDOWN ELEMENTS
-  // ===================================
-
-  $(document)
-    .on('click.bs.dropdown.data-api', clearMenus)
-    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
-    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
-    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
-
-}(jQuery);
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: modal.js v3.3.7
- * http://getbootstrap.com/javascript/#modals
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // MODAL CLASS DEFINITION
-  // ======================
-
-  var Modal = function (element, options) {
-    this.options             = options
-    this.$body               = $(document.body)
-    this.$element            = $(element)
-    this.$dialog             = this.$element.find('.modal-dialog')
-    this.$backdrop           = null
-    this.isShown             = null
-    this.originalBodyPad     = null
-    this.scrollbarWidth      = 0
-    this.ignoreBackdropClick = false
-
-    if (this.options.remote) {
-      this.$element
-        .find('.modal-content')
-        .load(this.options.remote, $.proxy(function () {
-          this.$element.trigger('loaded.bs.modal')
-        }, this))
-    }
-  }
-
-  Modal.VERSION  = '3.3.7'
-
-  Modal.TRANSITION_DURATION = 300
-  Modal.BACKDROP_TRANSITION_DURATION = 150
-
-  Modal.DEFAULTS = {
-    backdrop: true,
-    keyboard: true,
-    show: true
-  }
-
-  Modal.prototype.toggle = function (_relatedTarget) {
-    return this.isShown ? this.hide() : this.show(_relatedTarget)
-  }
-
-  Modal.prototype.show = function (_relatedTarget) {
-    var that = this
-    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
-
-    this.$element.trigger(e)
-
-    if (this.isShown || e.isDefaultPrevented()) return
-
-    this.isShown = true
-
-    this.checkScrollbar()
-    this.setScrollbar()
-    this.$body.addClass('modal-open')
-
-    this.escape()
-    this.resize()
-
-    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
-
-    this.$dialog.on('mousedown.dismiss.bs.modal', function () {
-      that.$element.one('mouseup.dismiss.bs.modal', function (e) {
-        if ($(e.target).is(that.$element)) that.ignoreBackdropClick = true
-      })
-    })
-
-    this.backdrop(function () {
-      var transition = $.support.transition && that.$element.hasClass('fade')
-
-      if (!that.$element.parent().length) {
-        that.$element.appendTo(that.$body) // don't move modals dom position
-      }
-
-      that.$element
-        .show()
-        .scrollTop(0)
-
-      that.adjustDialog()
-
-      if (transition) {
-        that.$element[0].offsetWidth // force reflow
-      }
-
-      that.$element.addClass('in')
-
-      that.enforceFocus()
-
-      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
-
-      transition ?
-        that.$dialog // wait for modal to slide in
-          .one('bsTransitionEnd', function () {
-            that.$element.trigger('focus').trigger(e)
-          })
-          .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
-        that.$element.trigger('focus').trigger(e)
-    })
-  }
-
-  Modal.prototype.hide = function (e) {
-    if (e) e.preventDefault()
-
-    e = $.Event('hide.bs.modal')
-
-    this.$element.trigger(e)
-
-    if (!this.isShown || e.isDefaultPrevented()) return
-
-    this.isShown = false
-
-    this.escape()
-    this.resize()
-
-    $(document).off('focusin.bs.modal')
-
-    this.$element
-      .removeClass('in')
-      .off('click.dismiss.bs.modal')
-      .off('mouseup.dismiss.bs.modal')
-
-    this.$dialog.off('mousedown.dismiss.bs.modal')
-
-    $.support.transition && this.$element.hasClass('fade') ?
-      this.$element
-        .one('bsTransitionEnd', $.proxy(this.hideModal, this))
-        .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
-      this.hideModal()
-  }
-
-  Modal.prototype.enforceFocus = function () {
-    $(document)
-      .off('focusin.bs.modal') // guard against infinite focus loop
-      .on('focusin.bs.modal', $.proxy(function (e) {
-        if (document !== e.target &&
-            this.$element[0] !== e.target &&
-            !this.$element.has(e.target).length) {
-          this.$element.trigger('focus')
-        }
-      }, this))
-  }
-
-  Modal.prototype.escape = function () {
-    if (this.isShown && this.options.keyboard) {
-      this.$element.on('keydown.dismiss.bs.modal', $.proxy(function (e) {
-        e.which == 27 && this.hide()
-      }, this))
-    } else if (!this.isShown) {
-      this.$element.off('keydown.dismiss.bs.modal')
-    }
-  }
-
-  Modal.prototype.resize = function () {
-    if (this.isShown) {
-      $(window).on('resize.bs.modal', $.proxy(this.handleUpdate, this))
-    } else {
-      $(window).off('resize.bs.modal')
-    }
-  }
-
-  Modal.prototype.hideModal = function () {
-    var that = this
-    this.$element.hide()
-    this.backdrop(function () {
-      that.$body.removeClass('modal-open')
-      that.resetAdjustments()
-      that.resetScrollbar()
-      that.$element.trigger('hidden.bs.modal')
-    })
-  }
-
-  Modal.prototype.removeBackdrop = function () {
-    this.$backdrop && this.$backdrop.remove()
-    this.$backdrop = null
-  }
-
-  Modal.prototype.backdrop = function (callback) {
-    var that = this
-    var animate = this.$element.hasClass('fade') ? 'fade' : ''
-
-    if (this.isShown && this.options.backdrop) {
-      var doAnimate = $.support.transition && animate
-
-      this.$backdrop = $(document.createElement('div'))
-        .addClass('modal-backdrop ' + animate)
-        .appendTo(this.$body)
-
-      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
-        if (this.ignoreBackdropClick) {
-          this.ignoreBackdropClick = false
-          return
-        }
-        if (e.target !== e.currentTarget) return
-        this.options.backdrop == 'static'
-          ? this.$element[0].focus()
-          : this.hide()
-      }, this))
-
-      if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
-
-      this.$backdrop.addClass('in')
-
-      if (!callback) return
-
-      doAnimate ?
-        this.$backdrop
-          .one('bsTransitionEnd', callback)
-          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
-        callback()
-
-    } else if (!this.isShown && this.$backdrop) {
-      this.$backdrop.removeClass('in')
-
-      var callbackRemove = function () {
-        that.removeBackdrop()
-        callback && callback()
-      }
-      $.support.transition && this.$element.hasClass('fade') ?
-        this.$backdrop
-          .one('bsTransitionEnd', callbackRemove)
-          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
-        callbackRemove()
-
-    } else if (callback) {
-      callback()
-    }
-  }
-
-  // these following methods are used to handle overflowing modals
-
-  Modal.prototype.handleUpdate = function () {
-    this.adjustDialog()
-  }
-
-  Modal.prototype.adjustDialog = function () {
-    var modalIsOverflowing = this.$element[0].scrollHeight > document.documentElement.clientHeight
-
-    this.$element.css({
-      paddingLeft:  !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
-      paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.scrollbarWidth : ''
-    })
-  }
-
-  Modal.prototype.resetAdjustments = function () {
-    this.$element.css({
-      paddingLeft: '',
-      paddingRight: ''
-    })
-  }
-
-  Modal.prototype.checkScrollbar = function () {
-    var fullWindowWidth = window.innerWidth
-    if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
-      var documentElementRect = document.documentElement.getBoundingClientRect()
-      fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)
-    }
-    this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth
-    this.scrollbarWidth = this.measureScrollbar()
-  }
-
-  Modal.prototype.setScrollbar = function () {
-    var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
-    this.originalBodyPad = document.body.style.paddingRight || ''
-    if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
-  }
-
-  Modal.prototype.resetScrollbar = function () {
-    this.$body.css('padding-right', this.originalBodyPad)
-  }
-
-  Modal.prototype.measureScrollbar = function () { // thx walsh
-    var scrollDiv = document.createElement('div')
-    scrollDiv.className = 'modal-scrollbar-measure'
-    this.$body.append(scrollDiv)
-    var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
-    this.$body[0].removeChild(scrollDiv)
-    return scrollbarWidth
-  }
-
-
-  // MODAL PLUGIN DEFINITION
-  // =======================
-
-  function Plugin(option, _relatedTarget) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.modal')
-      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
-
-      if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
-      if (typeof option == 'string') data[option](_relatedTarget)
-      else if (options.show) data.show(_relatedTarget)
-    })
-  }
-
-  var old = $.fn.modal
-
-  $.fn.modal             = Plugin
-  $.fn.modal.Constructor = Modal
-
-
-  // MODAL NO CONFLICT
-  // =================
-
-  $.fn.modal.noConflict = function () {
-    $.fn.modal = old
-    return this
-  }
-
-
-  // MODAL DATA-API
-  // ==============
-
-  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
-    var $this   = $(this)
-    var href    = $this.attr('href')
-    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
-    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
-
-    if ($this.is('a')) e.preventDefault()
-
-    $target.one('show.bs.modal', function (showEvent) {
-      if (showEvent.isDefaultPrevented()) return // only register focus restorer if modal will actually get shown
-      $target.one('hidden.bs.modal', function () {
-        $this.is(':visible') && $this.trigger('focus')
-      })
-    })
-    Plugin.call($target, option, this)
-  })
-
-}(jQuery);
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: tooltip.js v3.3.7
- * http://getbootstrap.com/javascript/#tooltip
- * Inspired by the original jQuery.tipsy by Jason Frame
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // TOOLTIP PUBLIC CLASS DEFINITION
-  // ===============================
-
-  var Tooltip = function (element, options) {
-    this.type       = null
-    this.options    = null
-    this.enabled    = null
-    this.timeout    = null
-    this.hoverState = null
-    this.$element   = null
-    this.inState    = null
-
-    this.init('tooltip', element, options)
-  }
-
-  Tooltip.VERSION  = '3.3.7'
-
-  Tooltip.TRANSITION_DURATION = 150
-
-  Tooltip.DEFAULTS = {
-    animation: true,
-    placement: 'top',
-    selector: false,
-    template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
-    trigger: 'hover focus',
-    title: '',
-    delay: 0,
-    html: false,
-    container: false,
-    viewport: {
-      selector: 'body',
-      padding: 0
-    }
-  }
-
-  Tooltip.prototype.init = function (type, element, options) {
-    this.enabled   = true
-    this.type      = type
-    this.$element  = $(element)
-    this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
-    this.inState   = { click: false, hover: false, focus: false }
-
-    if (this.$element[0] instanceof document.constructor && !this.options.selector) {
-      throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
-    }
-
-    var triggers = this.options.trigger.split(' ')
-
-    for (var i = triggers.length; i--;) {
-      var trigger = triggers[i]
-
-      if (trigger == 'click') {
-        this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
-      } else if (trigger != 'manual') {
-        var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
-        var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
-
-        this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
-        this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
-      }
-    }
-
-    this.options.selector ?
-      (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
-      this.fixTitle()
-  }
-
-  Tooltip.prototype.getDefaults = function () {
-    return Tooltip.DEFAULTS
-  }
-
-  Tooltip.prototype.getOptions = function (options) {
-    options = $.extend({}, this.getDefaults(), this.$element.data(), options)
-
-    if (options.delay && typeof options.delay == 'number') {
-      options.delay = {
-        show: options.delay,
-        hide: options.delay
-      }
-    }
-
-    return options
-  }
-
-  Tooltip.prototype.getDelegateOptions = function () {
-    var options  = {}
-    var defaults = this.getDefaults()
-
-    this._options && $.each(this._options, function (key, value) {
-      if (defaults[key] != value) options[key] = value
-    })
-
-    return options
-  }
-
-  Tooltip.prototype.enter = function (obj) {
-    var self = obj instanceof this.constructor ?
-      obj : $(obj.currentTarget).data('bs.' + this.type)
-
-    if (!self) {
-      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
-      $(obj.currentTarget).data('bs.' + this.type, self)
-    }
-
-    if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
-    }
-
-    if (self.tip().hasClass('in') || self.hoverState == 'in') {
-      self.hoverState = 'in'
-      return
-    }
-
-    clearTimeout(self.timeout)
-
-    self.hoverState = 'in'
-
-    if (!self.options.delay || !self.options.delay.show) return self.show()
-
-    self.timeout = setTimeout(function () {
-      if (self.hoverState == 'in') self.show()
-    }, self.options.delay.show)
-  }
-
-  Tooltip.prototype.isInStateTrue = function () {
-    for (var key in this.inState) {
-      if (this.inState[key]) return true
-    }
-
-    return false
-  }
-
-  Tooltip.prototype.leave = function (obj) {
-    var self = obj instanceof this.constructor ?
-      obj : $(obj.currentTarget).data('bs.' + this.type)
-
-    if (!self) {
-      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
-      $(obj.currentTarget).data('bs.' + this.type, self)
-    }
-
-    if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
-    }
-
-    if (self.isInStateTrue()) return
-
-    clearTimeout(self.timeout)
-
-    self.hoverState = 'out'
-
-    if (!self.options.delay || !self.options.delay.hide) return self.hide()
-
-    self.timeout = setTimeout(function () {
-      if (self.hoverState == 'out') self.hide()
-    }, self.options.delay.hide)
-  }
-
-  Tooltip.prototype.show = function () {
-    var e = $.Event('show.bs.' + this.type)
-
-    if (this.hasContent() && this.enabled) {
-      this.$element.trigger(e)
-
-      var inDom = $.contains(this.$element[0].ownerDocument.documentElement, this.$element[0])
-      if (e.isDefaultPrevented() || !inDom) return
-      var that = this
-
-      var $tip = this.tip()
-
-      var tipId = this.getUID(this.type)
-
-      this.setContent()
-      $tip.attr('id', tipId)
-      this.$element.attr('aria-describedby', tipId)
-
-      if (this.options.animation) $tip.addClass('fade')
-
-      var placement = typeof this.options.placement == 'function' ?
-        this.options.placement.call(this, $tip[0], this.$element[0]) :
-        this.options.placement
-
-      var autoToken = /\s?auto?\s?/i
-      var autoPlace = autoToken.test(placement)
-      if (autoPlace) placement = placement.replace(autoToken, '') || 'top'
-
-      $tip
-        .detach()
-        .css({ top: 0, left: 0, display: 'block' })
-        .addClass(placement)
-        .data('bs.' + this.type, this)
-
-      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
-      this.$element.trigger('inserted.bs.' + this.type)
-
-      var pos          = this.getPosition()
-      var actualWidth  = $tip[0].offsetWidth
-      var actualHeight = $tip[0].offsetHeight
-
-      if (autoPlace) {
-        var orgPlacement = placement
-        var viewportDim = this.getPosition(this.$viewport)
-
-        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
-                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
-                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
-                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
-                    placement
-
-        $tip
-          .removeClass(orgPlacement)
-          .addClass(placement)
-      }
-
-      var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight)
-
-      this.applyPlacement(calculatedOffset, placement)
-
-      var complete = function () {
-        var prevHoverState = that.hoverState
-        that.$element.trigger('shown.bs.' + that.type)
-        that.hoverState = null
-
-        if (prevHoverState == 'out') that.leave(that)
-      }
-
-      $.support.transition && this.$tip.hasClass('fade') ?
-        $tip
-          .one('bsTransitionEnd', complete)
-          .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
-        complete()
-    }
-  }
-
-  Tooltip.prototype.applyPlacement = function (offset, placement) {
-    var $tip   = this.tip()
-    var width  = $tip[0].offsetWidth
-    var height = $tip[0].offsetHeight
-
-    // manually read margins because getBoundingClientRect includes difference
-    var marginTop = parseInt($tip.css('margin-top'), 10)
-    var marginLeft = parseInt($tip.css('margin-left'), 10)
-
-    // we must check for NaN for ie 8/9
-    if (isNaN(marginTop))  marginTop  = 0
-    if (isNaN(marginLeft)) marginLeft = 0
-
-    offset.top  += marginTop
-    offset.left += marginLeft
-
-    // $.fn.offset doesn't round pixel values
-    // so we use setOffset directly with our own function B-0
-    $.offset.setOffset($tip[0], $.extend({
-      using: function (props) {
-        $tip.css({
-          top: Math.round(props.top),
-          left: Math.round(props.left)
-        })
-      }
-    }, offset), 0)
-
-    $tip.addClass('in')
-
-    // check to see if placing tip in new offset caused the tip to resize itself
-    var actualWidth  = $tip[0].offsetWidth
-    var actualHeight = $tip[0].offsetHeight
-
-    if (placement == 'top' && actualHeight != height) {
-      offset.top = offset.top + height - actualHeight
-    }
-
-    var delta = this.getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
-
-    if (delta.left) offset.left += delta.left
-    else offset.top += delta.top
-
-    var isVertical          = /top|bottom/.test(placement)
-    var arrowDelta          = isVertical ? delta.left * 2 - width + actualWidth : delta.top * 2 - height + actualHeight
-    var arrowOffsetPosition = isVertical ? 'offsetWidth' : 'offsetHeight'
-
-    $tip.offset(offset)
-    this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
-  }
-
-  Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
-    this.arrow()
-      .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
-      .css(isVertical ? 'top' : 'left', '')
-  }
-
-  Tooltip.prototype.setContent = function () {
-    var $tip  = this.tip()
-    var title = this.getTitle()
-
-    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
-    $tip.removeClass('fade in top bottom left right')
-  }
-
-  Tooltip.prototype.hide = function (callback) {
-    var that = this
-    var $tip = $(this.$tip)
-    var e    = $.Event('hide.bs.' + this.type)
-
-    function complete() {
-      if (that.hoverState != 'in') $tip.detach()
-      if (that.$element) { // TODO: Check whether guarding this code with this `if` is really necessary.
-        that.$element
-          .removeAttr('aria-describedby')
-          .trigger('hidden.bs.' + that.type)
-      }
-      callback && callback()
-    }
-
-    this.$element.trigger(e)
-
-    if (e.isDefaultPrevented()) return
-
-    $tip.removeClass('in')
-
-    $.support.transition && $tip.hasClass('fade') ?
-      $tip
-        .one('bsTransitionEnd', complete)
-        .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
-      complete()
-
-    this.hoverState = null
-
-    return this
-  }
-
-  Tooltip.prototype.fixTitle = function () {
-    var $e = this.$element
-    if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
-      $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
-    }
-  }
-
-  Tooltip.prototype.hasContent = function () {
-    return this.getTitle()
-  }
-
-  Tooltip.prototype.getPosition = function ($element) {
-    $element   = $element || this.$element
-
-    var el     = $element[0]
-    var isBody = el.tagName == 'BODY'
-
-    var elRect    = el.getBoundingClientRect()
-    if (elRect.width == null) {
-      // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
-      elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top })
-    }
-    var isSvg = window.SVGElement && el instanceof window.SVGElement
-    // Avoid using $.offset() on SVGs since it gives incorrect results in jQuery 3.
-    // See https://github.com/twbs/bootstrap/issues/20280
-    var elOffset  = isBody ? { top: 0, left: 0 } : (isSvg ? null : $element.offset())
-    var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() }
-    var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null
-
-    return $.extend({}, elRect, scroll, outerDims, elOffset)
-  }
-
-  Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
-    return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2 } :
-           placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 } :
-           placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
-        /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width }
-
-  }
-
-  Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
-    var delta = { top: 0, left: 0 }
-    if (!this.$viewport) return delta
-
-    var viewportPadding = this.options.viewport && this.options.viewport.padding || 0
-    var viewportDimensions = this.getPosition(this.$viewport)
-
-    if (/right|left/.test(placement)) {
-      var topEdgeOffset    = pos.top - viewportPadding - viewportDimensions.scroll
-      var bottomEdgeOffset = pos.top + viewportPadding - viewportDimensions.scroll + actualHeight
-      if (topEdgeOffset < viewportDimensions.top) { // top overflow
-        delta.top = viewportDimensions.top - topEdgeOffset
-      } else if (bottomEdgeOffset > viewportDimensions.top + viewportDimensions.height) { // bottom overflow
-        delta.top = viewportDimensions.top + viewportDimensions.height - bottomEdgeOffset
-      }
-    } else {
-      var leftEdgeOffset  = pos.left - viewportPadding
-      var rightEdgeOffset = pos.left + viewportPadding + actualWidth
-      if (leftEdgeOffset < viewportDimensions.left) { // left overflow
-        delta.left = viewportDimensions.left - leftEdgeOffset
-      } else if (rightEdgeOffset > viewportDimensions.right) { // right overflow
-        delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
-      }
-    }
-
-    return delta
-  }
-
-  Tooltip.prototype.getTitle = function () {
-    var title
-    var $e = this.$element
-    var o  = this.options
-
-    title = $e.attr('data-original-title')
-      || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
-
-    return title
-  }
-
-  Tooltip.prototype.getUID = function (prefix) {
-    do prefix += ~~(Math.random() * 1000000)
-    while (document.getElementById(prefix))
-    return prefix
-  }
-
-  Tooltip.prototype.tip = function () {
-    if (!this.$tip) {
-      this.$tip = $(this.options.template)
-      if (this.$tip.length != 1) {
-        throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
-      }
-    }
-    return this.$tip
-  }
-
-  Tooltip.prototype.arrow = function () {
-    return (this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow'))
-  }
-
-  Tooltip.prototype.enable = function () {
-    this.enabled = true
-  }
-
-  Tooltip.prototype.disable = function () {
-    this.enabled = false
-  }
-
-  Tooltip.prototype.toggleEnabled = function () {
-    this.enabled = !this.enabled
-  }
-
-  Tooltip.prototype.toggle = function (e) {
-    var self = this
-    if (e) {
-      self = $(e.currentTarget).data('bs.' + this.type)
-      if (!self) {
-        self = new this.constructor(e.currentTarget, this.getDelegateOptions())
-        $(e.currentTarget).data('bs.' + this.type, self)
-      }
-    }
-
-    if (e) {
-      self.inState.click = !self.inState.click
-      if (self.isInStateTrue()) self.enter(self)
-      else self.leave(self)
-    } else {
-      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
-    }
-  }
-
-  Tooltip.prototype.destroy = function () {
-    var that = this
-    clearTimeout(this.timeout)
-    this.hide(function () {
-      that.$element.off('.' + that.type).removeData('bs.' + that.type)
-      if (that.$tip) {
-        that.$tip.detach()
-      }
-      that.$tip = null
-      that.$arrow = null
-      that.$viewport = null
-      that.$element = null
-    })
-  }
-
-
-  // TOOLTIP PLUGIN DEFINITION
-  // =========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.tooltip')
-      var options = typeof option == 'object' && option
-
-      if (!data && /destroy|hide/.test(option)) return
-      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.tooltip
-
-  $.fn.tooltip             = Plugin
-  $.fn.tooltip.Constructor = Tooltip
-
-
-  // TOOLTIP NO CONFLICT
-  // ===================
-
-  $.fn.tooltip.noConflict = function () {
-    $.fn.tooltip = old
-    return this
-  }
-
-}(jQuery);
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: popover.js v3.3.7
- * http://getbootstrap.com/javascript/#popovers
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // POPOVER PUBLIC CLASS DEFINITION
-  // ===============================
-
-  var Popover = function (element, options) {
-    this.init('popover', element, options)
-  }
-
-  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
-
-  Popover.VERSION  = '3.3.7'
-
-  Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
-    placement: 'right',
-    trigger: 'click',
-    content: '',
-    template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-  })
-
-
-  // NOTE: POPOVER EXTENDS tooltip.js
-  // ================================
-
-  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
-
-  Popover.prototype.constructor = Popover
-
-  Popover.prototype.getDefaults = function () {
-    return Popover.DEFAULTS
-  }
-
-  Popover.prototype.setContent = function () {
-    var $tip    = this.tip()
-    var title   = this.getTitle()
-    var content = this.getContent()
-
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content').children().detach().end()[ // we use append for html objects to maintain js events
-      this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
-    ](content)
-
-    $tip.removeClass('fade top bottom left right in')
-
-    // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
-    // this manually by checking the contents.
-    if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
-  }
-
-  Popover.prototype.hasContent = function () {
-    return this.getTitle() || this.getContent()
-  }
-
-  Popover.prototype.getContent = function () {
-    var $e = this.$element
-    var o  = this.options
-
-    return $e.attr('data-content')
-      || (typeof o.content == 'function' ?
-            o.content.call($e[0]) :
-            o.content)
-  }
-
-  Popover.prototype.arrow = function () {
-    return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
-  }
-
-
-  // POPOVER PLUGIN DEFINITION
-  // =========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.popover')
-      var options = typeof option == 'object' && option
-
-      if (!data && /destroy|hide/.test(option)) return
-      if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.popover
-
-  $.fn.popover             = Plugin
-  $.fn.popover.Constructor = Popover
-
-
-  // POPOVER NO CONFLICT
-  // ===================
-
-  $.fn.popover.noConflict = function () {
-    $.fn.popover = old
-    return this
-  }
-
-}(jQuery);
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: scrollspy.js v3.3.7
- * http://getbootstrap.com/javascript/#scrollspy
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // SCROLLSPY CLASS DEFINITION
-  // ==========================
-
-  function ScrollSpy(element, options) {
-    this.$body          = $(document.body)
-    this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
-    this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
-    this.selector       = (this.options.target || '') + ' .nav li > a'
-    this.offsets        = []
-    this.targets        = []
-    this.activeTarget   = null
-    this.scrollHeight   = 0
-
-    this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
-    this.refresh()
-    this.process()
-  }
-
-  ScrollSpy.VERSION  = '3.3.7'
-
-  ScrollSpy.DEFAULTS = {
-    offset: 10
-  }
-
-  ScrollSpy.prototype.getScrollHeight = function () {
-    return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
-  }
-
-  ScrollSpy.prototype.refresh = function () {
-    var that          = this
-    var offsetMethod  = 'offset'
-    var offsetBase    = 0
-
-    this.offsets      = []
-    this.targets      = []
-    this.scrollHeight = this.getScrollHeight()
-
-    if (!$.isWindow(this.$scrollElement[0])) {
-      offsetMethod = 'position'
-      offsetBase   = this.$scrollElement.scrollTop()
-    }
-
-    this.$body
-      .find(this.selector)
-      .map(function () {
-        var $el   = $(this)
-        var href  = $el.data('target') || $el.attr('href')
-        var $href = /^#./.test(href) && $(href)
-
-        return ($href
-          && $href.length
-          && $href.is(':visible')
-          && [[$href[offsetMethod]().top + offsetBase, href]]) || null
-      })
-      .sort(function (a, b) { return a[0] - b[0] })
-      .each(function () {
-        that.offsets.push(this[0])
-        that.targets.push(this[1])
-      })
-  }
-
-  ScrollSpy.prototype.process = function () {
-    var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
-    var scrollHeight = this.getScrollHeight()
-    var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
-    var offsets      = this.offsets
-    var targets      = this.targets
-    var activeTarget = this.activeTarget
-    var i
-
-    if (this.scrollHeight != scrollHeight) {
-      this.refresh()
-    }
-
-    if (scrollTop >= maxScroll) {
-      return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
-    }
-
-    if (activeTarget && scrollTop < offsets[0]) {
-      this.activeTarget = null
-      return this.clear()
-    }
-
-    for (i = offsets.length; i--;) {
-      activeTarget != targets[i]
-        && scrollTop >= offsets[i]
-        && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
-        && this.activate(targets[i])
-    }
-  }
-
-  ScrollSpy.prototype.activate = function (target) {
-    this.activeTarget = target
-
-    this.clear()
-
-    var selector = this.selector +
-      '[data-target="' + target + '"],' +
-      this.selector + '[href="' + target + '"]'
-
-    var active = $(selector)
-      .parents('li')
-      .addClass('active')
-
-    if (active.parent('.dropdown-menu').length) {
-      active = active
-        .closest('li.dropdown')
-        .addClass('active')
-    }
-
-    active.trigger('activate.bs.scrollspy')
-  }
-
-  ScrollSpy.prototype.clear = function () {
-    $(this.selector)
-      .parentsUntil(this.options.target, '.active')
-      .removeClass('active')
-  }
-
-
-  // SCROLLSPY PLUGIN DEFINITION
-  // ===========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.scrollspy')
-      var options = typeof option == 'object' && option
-
-      if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.scrollspy
-
-  $.fn.scrollspy             = Plugin
-  $.fn.scrollspy.Constructor = ScrollSpy
-
-
-  // SCROLLSPY NO CONFLICT
-  // =====================
-
-  $.fn.scrollspy.noConflict = function () {
-    $.fn.scrollspy = old
-    return this
-  }
-
-
-  // SCROLLSPY DATA-API
-  // ==================
-
-  $(window).on('load.bs.scrollspy.data-api', function () {
-    $('[data-spy="scroll"]').each(function () {
-      var $spy = $(this)
-      Plugin.call($spy, $spy.data())
-    })
-  })
-
-}(jQuery);
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: tab.js v3.3.7
- * http://getbootstrap.com/javascript/#tabs
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // TAB CLASS DEFINITION
-  // ====================
-
-  var Tab = function (element) {
-    // jscs:disable requireDollarBeforejQueryAssignment
-    this.element = $(element)
-    // jscs:enable requireDollarBeforejQueryAssignment
-  }
-
-  Tab.VERSION = '3.3.7'
-
-  Tab.TRANSITION_DURATION = 150
-
-  Tab.prototype.show = function () {
-    var $this    = this.element
-    var $ul      = $this.closest('ul:not(.dropdown-menu)')
-    var selector = $this.data('target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
-
-    if ($this.parent('li').hasClass('active')) return
-
-    var $previous = $ul.find('.active:last a')
-    var hideEvent = $.Event('hide.bs.tab', {
-      relatedTarget: $this[0]
-    })
-    var showEvent = $.Event('show.bs.tab', {
-      relatedTarget: $previous[0]
-    })
-
-    $previous.trigger(hideEvent)
-    $this.trigger(showEvent)
-
-    if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
-
-    var $target = $(selector)
-
-    this.activate($this.closest('li'), $ul)
-    this.activate($target, $target.parent(), function () {
-      $previous.trigger({
-        type: 'hidden.bs.tab',
-        relatedTarget: $this[0]
-      })
-      $this.trigger({
-        type: 'shown.bs.tab',
-        relatedTarget: $previous[0]
-      })
-    })
-  }
-
-  Tab.prototype.activate = function (element, container, callback) {
-    var $active    = container.find('> .active')
-    var transition = callback
-      && $.support.transition
-      && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
-
-    function next() {
-      $active
-        .removeClass('active')
-        .find('> .dropdown-menu > .active')
-          .removeClass('active')
-        .end()
-        .find('[data-toggle="tab"]')
-          .attr('aria-expanded', false)
-
-      element
-        .addClass('active')
-        .find('[data-toggle="tab"]')
-          .attr('aria-expanded', true)
-
-      if (transition) {
-        element[0].offsetWidth // reflow for transition
-        element.addClass('in')
-      } else {
-        element.removeClass('fade')
-      }
-
-      if (element.parent('.dropdown-menu').length) {
-        element
-          .closest('li.dropdown')
-            .addClass('active')
-          .end()
-          .find('[data-toggle="tab"]')
-            .attr('aria-expanded', true)
-      }
-
-      callback && callback()
-    }
-
-    $active.length && transition ?
-      $active
-        .one('bsTransitionEnd', next)
-        .emulateTransitionEnd(Tab.TRANSITION_DURATION) :
-      next()
-
-    $active.removeClass('in')
-  }
-
-
-  // TAB PLUGIN DEFINITION
-  // =====================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.tab')
-
-      if (!data) $this.data('bs.tab', (data = new Tab(this)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.tab
-
-  $.fn.tab             = Plugin
-  $.fn.tab.Constructor = Tab
-
-
-  // TAB NO CONFLICT
-  // ===============
-
-  $.fn.tab.noConflict = function () {
-    $.fn.tab = old
-    return this
-  }
-
-
-  // TAB DATA-API
-  // ============
-
-  var clickHandler = function (e) {
-    e.preventDefault()
-    Plugin.call($(this), 'show')
-  }
-
-  $(document)
-    .on('click.bs.tab.data-api', '[data-toggle="tab"]', clickHandler)
-    .on('click.bs.tab.data-api', '[data-toggle="pill"]', clickHandler)
-
-}(jQuery);
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-/* ========================================================================
- * Bootstrap: affix.js v3.3.7
- * http://getbootstrap.com/javascript/#affix
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // AFFIX CLASS DEFINITION
-  // ======================
-
-  var Affix = function (element, options) {
-    this.options = $.extend({}, Affix.DEFAULTS, options)
-
-    this.$target = $(this.options.target)
-      .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
-      .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
-
-    this.$element     = $(element)
-    this.affixed      = null
-    this.unpin        = null
-    this.pinnedOffset = null
-
-    this.checkPosition()
-  }
-
-  Affix.VERSION  = '3.3.7'
-
-  Affix.RESET    = 'affix affix-top affix-bottom'
-
-  Affix.DEFAULTS = {
-    offset: 0,
-    target: window
-  }
-
-  Affix.prototype.getState = function (scrollHeight, height, offsetTop, offsetBottom) {
-    var scrollTop    = this.$target.scrollTop()
-    var position     = this.$element.offset()
-    var targetHeight = this.$target.height()
-
-    if (offsetTop != null && this.affixed == 'top') return scrollTop < offsetTop ? 'top' : false
-
-    if (this.affixed == 'bottom') {
-      if (offsetTop != null) return (scrollTop + this.unpin <= position.top) ? false : 'bottom'
-      return (scrollTop + targetHeight <= scrollHeight - offsetBottom) ? false : 'bottom'
-    }
-
-    var initializing   = this.affixed == null
-    var colliderTop    = initializing ? scrollTop : position.top
-    var colliderHeight = initializing ? targetHeight : height
-
-    if (offsetTop != null && scrollTop <= offsetTop) return 'top'
-    if (offsetBottom != null && (colliderTop + colliderHeight >= scrollHeight - offsetBottom)) return 'bottom'
-
-    return false
-  }
-
-  Affix.prototype.getPinnedOffset = function () {
-    if (this.pinnedOffset) return this.pinnedOffset
-    this.$element.removeClass(Affix.RESET).addClass('affix')
-    var scrollTop = this.$target.scrollTop()
-    var position  = this.$element.offset()
-    return (this.pinnedOffset = position.top - scrollTop)
-  }
-
-  Affix.prototype.checkPositionWithEventLoop = function () {
-    setTimeout($.proxy(this.checkPosition, this), 1)
-  }
-
-  Affix.prototype.checkPosition = function () {
-    if (!this.$element.is(':visible')) return
-
-    var height       = this.$element.height()
-    var offset       = this.options.offset
-    var offsetTop    = offset.top
-    var offsetBottom = offset.bottom
-    var scrollHeight = Math.max($(document).height(), $(document.body).height())
-
-    if (typeof offset != 'object')         offsetBottom = offsetTop = offset
-    if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
-    if (typeof offsetBottom == 'function') offsetBottom = offset.bottom(this.$element)
-
-    var affix = this.getState(scrollHeight, height, offsetTop, offsetBottom)
-
-    if (this.affixed != affix) {
-      if (this.unpin != null) this.$element.css('top', '')
-
-      var affixType = 'affix' + (affix ? '-' + affix : '')
-      var e         = $.Event(affixType + '.bs.affix')
-
-      this.$element.trigger(e)
-
-      if (e.isDefaultPrevented()) return
-
-      this.affixed = affix
-      this.unpin = affix == 'bottom' ? this.getPinnedOffset() : null
-
-      this.$element
-        .removeClass(Affix.RESET)
-        .addClass(affixType)
-        .trigger(affixType.replace('affix', 'affixed') + '.bs.affix')
-    }
-
-    if (affix == 'bottom') {
-      this.$element.offset({
-        top: scrollHeight - height - offsetBottom
-      })
-    }
-  }
-
-
-  // AFFIX PLUGIN DEFINITION
-  // =======================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.affix')
-      var options = typeof option == 'object' && option
-
-      if (!data) $this.data('bs.affix', (data = new Affix(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.affix
-
-  $.fn.affix             = Plugin
-  $.fn.affix.Constructor = Affix
-
-
-  // AFFIX NO CONFLICT
-  // =================
-
-  $.fn.affix.noConflict = function () {
-    $.fn.affix = old
-    return this
-  }
-
-
-  // AFFIX DATA-API
-  // ==============
-
-  $(window).on('load', function () {
-    $('[data-spy="affix"]').each(function () {
-      var $spy = $(this)
-      var data = $spy.data()
-
-      data.offset = data.offset || {}
-
-      if (data.offsetBottom != null) data.offset.bottom = data.offsetBottom
-      if (data.offsetTop    != null) data.offset.top    = data.offsetTop
-
-      Plugin.call($spy, data)
-    })
-  })
-
-}(jQuery);
-
-
-/***/ }),
-/* 17 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -20578,7 +18967,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 18 */
+/* 11 */
 /***/ (function(module, exports) {
 
 var g;
@@ -20602,824 +18991,6 @@ try {
 // easier to handle this case. if(!global) { ...}
 
 module.exports = g;
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * Lightbox v2.9.0
- * by Lokesh Dhakar
- *
- * More info:
- * http://lokeshdhakar.com/projects/lightbox2/
- *
- * Copyright 2007, 2015 Lokesh Dhakar
- * Released under the MIT license
- * https://github.com/lokesh/lightbox2/blob/master/LICENSE
- */
-
-// Uses Node, AMD or browser globals to create a module.
-(function (root, factory) {
-    if (true) {
-        // AMD. Register as an anonymous module.
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = factory(require('jquery'));
-    } else {
-        // Browser globals (root is window)
-        root.lightbox = factory(root.jQuery);
-    }
-}(this, function ($) {
-
-  function Lightbox(options) {
-    this.album = [];
-    this.currentImageIndex = void 0;
-    this.init();
-
-    // options
-    this.options = $.extend({}, this.constructor.defaults);
-    this.option(options);
-  }
-
-  // Descriptions of all options available on the demo site:
-  // http://lokeshdhakar.com/projects/lightbox2/index.html#options
-  Lightbox.defaults = {
-    albumLabel: 'Image %1 of %2',
-    alwaysShowNavOnTouchDevices: false,
-    fadeDuration: 600,
-    fitImagesInViewport: true,
-    imageFadeDuration: 600,
-    // maxWidth: 800,
-    // maxHeight: 600,
-    positionFromTop: 50,
-    resizeDuration: 700,
-    showImageNumberLabel: true,
-    wrapAround: false,
-    disableScrolling: false,
-    /*
-    Sanitize Title
-    If the caption data is trusted, for example you are hardcoding it in, then leave this to false.
-    This will free you to add html tags, such as links, in the caption.
-
-    If the caption data is user submitted or from some other untrusted source, then set this to true
-    to prevent xss and other injection attacks.
-     */
-    sanitizeTitle: false
-  };
-
-  Lightbox.prototype.option = function(options) {
-    $.extend(this.options, options);
-  };
-
-  Lightbox.prototype.imageCountLabel = function(currentImageNum, totalImages) {
-    return this.options.albumLabel.replace(/%1/g, currentImageNum).replace(/%2/g, totalImages);
-  };
-
-  Lightbox.prototype.init = function() {
-    var self = this;
-    // Both enable and build methods require the body tag to be in the DOM.
-    $(document).ready(function() {
-      self.enable();
-      self.build();
-    });
-  };
-
-  // Loop through anchors and areamaps looking for either data-lightbox attributes or rel attributes
-  // that contain 'lightbox'. When these are clicked, start lightbox.
-  Lightbox.prototype.enable = function() {
-    var self = this;
-    $('body').on('click', 'a[rel^=lightbox], area[rel^=lightbox], a[data-lightbox], area[data-lightbox]', function(event) {
-      self.start($(event.currentTarget));
-      return false;
-    });
-  };
-
-  // Build html for the lightbox and the overlay.
-  // Attach event handlers to the new DOM elements. click click click
-  Lightbox.prototype.build = function() {
-    var self = this;
-    $('<div id="lightboxOverlay" class="lightboxOverlay"></div><div id="lightbox" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" /><div class="lb-nav"><a class="lb-prev" href="" ></a><a class="lb-next" href="" ></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div>').appendTo($('body'));
-
-    // Cache jQuery objects
-    this.$lightbox       = $('#lightbox');
-    this.$overlay        = $('#lightboxOverlay');
-    this.$outerContainer = this.$lightbox.find('.lb-outerContainer');
-    this.$container      = this.$lightbox.find('.lb-container');
-    this.$image          = this.$lightbox.find('.lb-image');
-    this.$nav            = this.$lightbox.find('.lb-nav');
-
-    // Store css values for future lookup
-    this.containerPadding = {
-      top: parseInt(this.$container.css('padding-top'), 10),
-      right: parseInt(this.$container.css('padding-right'), 10),
-      bottom: parseInt(this.$container.css('padding-bottom'), 10),
-      left: parseInt(this.$container.css('padding-left'), 10)
-    };
-
-    this.imageBorderWidth = {
-      top: parseInt(this.$image.css('border-top-width'), 10),
-      right: parseInt(this.$image.css('border-right-width'), 10),
-      bottom: parseInt(this.$image.css('border-bottom-width'), 10),
-      left: parseInt(this.$image.css('border-left-width'), 10)
-    };
-
-    // Attach event handlers to the newly minted DOM elements
-    this.$overlay.hide().on('click', function() {
-      self.end();
-      return false;
-    });
-
-    this.$lightbox.hide().on('click', function(event) {
-      if ($(event.target).attr('id') === 'lightbox') {
-        self.end();
-      }
-      return false;
-    });
-
-    this.$outerContainer.on('click', function(event) {
-      if ($(event.target).attr('id') === 'lightbox') {
-        self.end();
-      }
-      return false;
-    });
-
-    this.$lightbox.find('.lb-prev').on('click', function() {
-      if (self.currentImageIndex === 0) {
-        self.changeImage(self.album.length - 1);
-      } else {
-        self.changeImage(self.currentImageIndex - 1);
-      }
-      return false;
-    });
-
-    this.$lightbox.find('.lb-next').on('click', function() {
-      if (self.currentImageIndex === self.album.length - 1) {
-        self.changeImage(0);
-      } else {
-        self.changeImage(self.currentImageIndex + 1);
-      }
-      return false;
-    });
-
-    /*
-      Show context menu for image on right-click
-
-      There is a div containing the navigation that spans the entire image and lives above of it. If
-      you right-click, you are right clicking this div and not the image. This prevents users from
-      saving the image or using other context menu actions with the image.
-
-      To fix this, when we detect the right mouse button is pressed down, but not yet clicked, we
-      set pointer-events to none on the nav div. This is so that the upcoming right-click event on
-      the next mouseup will bubble down to the image. Once the right-click/contextmenu event occurs
-      we set the pointer events back to auto for the nav div so it can capture hover and left-click
-      events as usual.
-     */
-    this.$nav.on('mousedown', function(event) {
-      if (event.which === 3) {
-        self.$nav.css('pointer-events', 'none');
-
-        self.$lightbox.one('contextmenu', function() {
-          setTimeout(function() {
-              this.$nav.css('pointer-events', 'auto');
-          }.bind(self), 0);
-        });
-      }
-    });
-
-
-    this.$lightbox.find('.lb-loader, .lb-close').on('click', function() {
-      self.end();
-      return false;
-    });
-  };
-
-  // Show overlay and lightbox. If the image is part of a set, add siblings to album array.
-  Lightbox.prototype.start = function($link) {
-    var self    = this;
-    var $window = $(window);
-
-    $window.on('resize', $.proxy(this.sizeOverlay, this));
-
-    $('select, object, embed').css({
-      visibility: 'hidden'
-    });
-
-    this.sizeOverlay();
-
-    this.album = [];
-    var imageNumber = 0;
-
-    function addToAlbum($link) {
-      self.album.push({
-        link: $link.attr('href'),
-        title: $link.attr('data-title') || $link.attr('title')
-      });
-    }
-
-    // Support both data-lightbox attribute and rel attribute implementations
-    var dataLightboxValue = $link.attr('data-lightbox');
-    var $links;
-
-    if (dataLightboxValue) {
-      $links = $($link.prop('tagName') + '[data-lightbox="' + dataLightboxValue + '"]');
-      for (var i = 0; i < $links.length; i = ++i) {
-        addToAlbum($($links[i]));
-        if ($links[i] === $link[0]) {
-          imageNumber = i;
-        }
-      }
-    } else {
-      if ($link.attr('rel') === 'lightbox') {
-        // If image is not part of a set
-        addToAlbum($link);
-      } else {
-        // If image is part of a set
-        $links = $($link.prop('tagName') + '[rel="' + $link.attr('rel') + '"]');
-        for (var j = 0; j < $links.length; j = ++j) {
-          addToAlbum($($links[j]));
-          if ($links[j] === $link[0]) {
-            imageNumber = j;
-          }
-        }
-      }
-    }
-
-    // Position Lightbox
-    var top  = $window.scrollTop() + this.options.positionFromTop;
-    var left = $window.scrollLeft();
-    this.$lightbox.css({
-      top: top + 'px',
-      left: left + 'px'
-    }).fadeIn(this.options.fadeDuration);
-
-    // Disable scrolling of the page while open
-    if (this.options.disableScrolling) {
-      $('body').addClass('lb-disable-scrolling');
-    }
-
-    this.changeImage(imageNumber);
-  };
-
-  // Hide most UI elements in preparation for the animated resizing of the lightbox.
-  Lightbox.prototype.changeImage = function(imageNumber) {
-    var self = this;
-
-    this.disableKeyboardNav();
-    var $image = this.$lightbox.find('.lb-image');
-
-    this.$overlay.fadeIn(this.options.fadeDuration);
-
-    $('.lb-loader').fadeIn('slow');
-    this.$lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
-
-    this.$outerContainer.addClass('animating');
-
-    // When image to show is preloaded, we send the width and height to sizeContainer()
-    var preloader = new Image();
-    preloader.onload = function() {
-      var $preloader;
-      var imageHeight;
-      var imageWidth;
-      var maxImageHeight;
-      var maxImageWidth;
-      var windowHeight;
-      var windowWidth;
-
-      $image.attr('src', self.album[imageNumber].link);
-
-      $preloader = $(preloader);
-
-      $image.width(preloader.width);
-      $image.height(preloader.height);
-
-      if (self.options.fitImagesInViewport) {
-        // Fit image inside the viewport.
-        // Take into account the border around the image and an additional 10px gutter on each side.
-
-        windowWidth    = $(window).width();
-        windowHeight   = $(window).height();
-        maxImageWidth  = windowWidth - self.containerPadding.left - self.containerPadding.right - self.imageBorderWidth.left - self.imageBorderWidth.right - 20;
-        maxImageHeight = windowHeight - self.containerPadding.top - self.containerPadding.bottom - self.imageBorderWidth.top - self.imageBorderWidth.bottom - 120;
-
-        // Check if image size is larger then maxWidth|maxHeight in settings
-        if (self.options.maxWidth && self.options.maxWidth < maxImageWidth) {
-          maxImageWidth = self.options.maxWidth;
-        }
-        if (self.options.maxHeight && self.options.maxHeight < maxImageWidth) {
-          maxImageHeight = self.options.maxHeight;
-        }
-
-        // Is there a fitting issue?
-        if ((preloader.width > maxImageWidth) || (preloader.height > maxImageHeight)) {
-          if ((preloader.width / maxImageWidth) > (preloader.height / maxImageHeight)) {
-            imageWidth  = maxImageWidth;
-            imageHeight = parseInt(preloader.height / (preloader.width / imageWidth), 10);
-            $image.width(imageWidth);
-            $image.height(imageHeight);
-          } else {
-            imageHeight = maxImageHeight;
-            imageWidth = parseInt(preloader.width / (preloader.height / imageHeight), 10);
-            $image.width(imageWidth);
-            $image.height(imageHeight);
-          }
-        }
-      }
-      self.sizeContainer($image.width(), $image.height());
-    };
-
-    preloader.src          = this.album[imageNumber].link;
-    this.currentImageIndex = imageNumber;
-  };
-
-  // Stretch overlay to fit the viewport
-  Lightbox.prototype.sizeOverlay = function() {
-    this.$overlay
-      .width($(document).width())
-      .height($(document).height());
-  };
-
-  // Animate the size of the lightbox to fit the image we are showing
-  Lightbox.prototype.sizeContainer = function(imageWidth, imageHeight) {
-    var self = this;
-
-    var oldWidth  = this.$outerContainer.outerWidth();
-    var oldHeight = this.$outerContainer.outerHeight();
-    var newWidth  = imageWidth + this.containerPadding.left + this.containerPadding.right + this.imageBorderWidth.left + this.imageBorderWidth.right;
-    var newHeight = imageHeight + this.containerPadding.top + this.containerPadding.bottom + this.imageBorderWidth.top + this.imageBorderWidth.bottom;
-
-    function postResize() {
-      self.$lightbox.find('.lb-dataContainer').width(newWidth);
-      self.$lightbox.find('.lb-prevLink').height(newHeight);
-      self.$lightbox.find('.lb-nextLink').height(newHeight);
-      self.showImage();
-    }
-
-    if (oldWidth !== newWidth || oldHeight !== newHeight) {
-      this.$outerContainer.animate({
-        width: newWidth,
-        height: newHeight
-      }, this.options.resizeDuration, 'swing', function() {
-        postResize();
-      });
-    } else {
-      postResize();
-    }
-  };
-
-  // Display the image and its details and begin preload neighboring images.
-  Lightbox.prototype.showImage = function() {
-    this.$lightbox.find('.lb-loader').stop(true).hide();
-    this.$lightbox.find('.lb-image').fadeIn(this.options.imageFadeDuration);
-
-    this.updateNav();
-    this.updateDetails();
-    this.preloadNeighboringImages();
-    this.enableKeyboardNav();
-  };
-
-  // Display previous and next navigation if appropriate.
-  Lightbox.prototype.updateNav = function() {
-    // Check to see if the browser supports touch events. If so, we take the conservative approach
-    // and assume that mouse hover events are not supported and always show prev/next navigation
-    // arrows in image sets.
-    var alwaysShowNav = false;
-    try {
-      document.createEvent('TouchEvent');
-      alwaysShowNav = (this.options.alwaysShowNavOnTouchDevices) ? true : false;
-    } catch (e) {}
-
-    this.$lightbox.find('.lb-nav').show();
-
-    if (this.album.length > 1) {
-      if (this.options.wrapAround) {
-        if (alwaysShowNav) {
-          this.$lightbox.find('.lb-prev, .lb-next').css('opacity', '1');
-        }
-        this.$lightbox.find('.lb-prev, .lb-next').show();
-      } else {
-        if (this.currentImageIndex > 0) {
-          this.$lightbox.find('.lb-prev').show();
-          if (alwaysShowNav) {
-            this.$lightbox.find('.lb-prev').css('opacity', '1');
-          }
-        }
-        if (this.currentImageIndex < this.album.length - 1) {
-          this.$lightbox.find('.lb-next').show();
-          if (alwaysShowNav) {
-            this.$lightbox.find('.lb-next').css('opacity', '1');
-          }
-        }
-      }
-    }
-  };
-
-  // Display caption, image number, and closing button.
-  Lightbox.prototype.updateDetails = function() {
-    var self = this;
-
-    // Enable anchor clicks in the injected caption html.
-    // Thanks Nate Wright for the fix. @https://github.com/NateWr
-    if (typeof this.album[this.currentImageIndex].title !== 'undefined' &&
-      this.album[this.currentImageIndex].title !== '') {
-      var $caption = this.$lightbox.find('.lb-caption');
-      if (this.options.sanitizeTitle) {
-        $caption.text(this.album[this.currentImageIndex].title);
-      } else {
-        $caption.html(this.album[this.currentImageIndex].title);
-      }
-      $caption.fadeIn('fast')
-        .find('a').on('click', function(event) {
-          if ($(this).attr('target') !== undefined) {
-            window.open($(this).attr('href'), $(this).attr('target'));
-          } else {
-            location.href = $(this).attr('href');
-          }
-        });
-    }
-
-    if (this.album.length > 1 && this.options.showImageNumberLabel) {
-      var labelText = this.imageCountLabel(this.currentImageIndex + 1, this.album.length);
-      this.$lightbox.find('.lb-number').text(labelText).fadeIn('fast');
-    } else {
-      this.$lightbox.find('.lb-number').hide();
-    }
-
-    this.$outerContainer.removeClass('animating');
-
-    this.$lightbox.find('.lb-dataContainer').fadeIn(this.options.resizeDuration, function() {
-      return self.sizeOverlay();
-    });
-  };
-
-  // Preload previous and next images in set.
-  Lightbox.prototype.preloadNeighboringImages = function() {
-    if (this.album.length > this.currentImageIndex + 1) {
-      var preloadNext = new Image();
-      preloadNext.src = this.album[this.currentImageIndex + 1].link;
-    }
-    if (this.currentImageIndex > 0) {
-      var preloadPrev = new Image();
-      preloadPrev.src = this.album[this.currentImageIndex - 1].link;
-    }
-  };
-
-  Lightbox.prototype.enableKeyboardNav = function() {
-    $(document).on('keyup.keyboard', $.proxy(this.keyboardAction, this));
-  };
-
-  Lightbox.prototype.disableKeyboardNav = function() {
-    $(document).off('.keyboard');
-  };
-
-  Lightbox.prototype.keyboardAction = function(event) {
-    var KEYCODE_ESC        = 27;
-    var KEYCODE_LEFTARROW  = 37;
-    var KEYCODE_RIGHTARROW = 39;
-
-    var keycode = event.keyCode;
-    var key     = String.fromCharCode(keycode).toLowerCase();
-    if (keycode === KEYCODE_ESC || key.match(/x|o|c/)) {
-      this.end();
-    } else if (key === 'p' || keycode === KEYCODE_LEFTARROW) {
-      if (this.currentImageIndex !== 0) {
-        this.changeImage(this.currentImageIndex - 1);
-      } else if (this.options.wrapAround && this.album.length > 1) {
-        this.changeImage(this.album.length - 1);
-      }
-    } else if (key === 'n' || keycode === KEYCODE_RIGHTARROW) {
-      if (this.currentImageIndex !== this.album.length - 1) {
-        this.changeImage(this.currentImageIndex + 1);
-      } else if (this.options.wrapAround && this.album.length > 1) {
-        this.changeImage(0);
-      }
-    }
-  };
-
-  // Closing time. :-(
-  Lightbox.prototype.end = function() {
-    this.disableKeyboardNav();
-    $(window).off('resize', this.sizeOverlay);
-    this.$lightbox.fadeOut(this.options.fadeDuration);
-    this.$overlay.fadeOut(this.options.fadeDuration);
-    $('select, object, embed').css({
-      visibility: 'visible'
-    });
-    if (this.options.disableScrolling) {
-      $('body').removeClass('lb-disable-scrolling');
-    }
-  };
-
-  return new Lightbox();
-}));
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-var navHeight = $('.navbar').height();
-var navbar = $('.navbar.navbar-default');
-var body = $('body');
-var buttonNavbarToggle = $('button.navbar-toggle');
-var windowHeight = $(window).height();
-var windowWidth = $(window).width();
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-//-- Funciones Globales --------------------------------------------------------
-
-/* Checkear el ancho de la ventana para saber si es Mobile */
-function checkWidth() {
-
-  if ( windowWidth <= 414) {
-    return true;
-  }
-
-  else {
-    return false;
-  }
-}
-
-/* Checkear si es Tablet */
-function isTablet() {
-  var calcAspectRatio = windowHeight / windowWidth;
-  var aspectRatio = calcAspectRatio.toFixed(2);
-
-  if ( windowHeight > windowWidth) {
-    if ( aspectRatio == 1.33) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-}
-
-function calcularPadding(element) {
-  var elementHeight = $(element).height();
-  var elementMargin = (navHeight - elementHeight) / 2 + 'px';
-  $(element).css({'padding-top': elementMargin, 'padding-bottom': elementMargin });
-}
-
-
-//-- Funciones para Elementos animados con Animate.css -------------------------
-function fadeElement(element, animation) {
-  $(element).css('opacity', 0);
-  $(element).each(function() {
-      $(this).waypoint(function() {
-          $(this.element).addClass('animated').addClass(animation);
-      },
-      { offset: '80%'});
-  });
-}
-
-function fadeElementOffset(element, animation, offsetvalue) {
-  $(element).css('opacity', 0);
-  $(element).each(function() {
-      $(this).waypoint(function() {
-          $(this.element).addClass('animated').addClass(animation);
-      },
-      { offset: offsetvalue
-    });
-  });
-}
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-
-
-
-alert('Webpack funciona');
-
-
-//-- Template ------------------------------------------------------------------
-Vue.component('navbar', {
-  template: `
-      <div class="container">
-          <div class="navbar-header page-scroll">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-              <a class="navbar-brand page-scroll" href="#page-top"><span class="sr-only">Masterplan</span><img src="https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/logo.png" srcset="https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/logo@2x.png 2x" alt="Masterplan"></a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse navbar-ex1-collapse">
-              <ul class="nav navbar-nav">
-                  <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                  <li class="hidden">
-                      <a class="page-scroll" href="#page-top"></a>
-                  </li>
-                  <li><a class="page-scroll" href="#section-hero">Inicio</a></li>
-                  <li><a class="page-scroll" href="#section-tipos">Tipos</a></li>
-                  <li><a class="page-scroll" href="#section-map">Ubicación</a></li>
-                  <li><a class="page-scroll" href="#section-contacto">Contacto</a></li>
-              </ul>
-          </div>
-          <!-- /.navbar-collapse -->
-      </div>`
-});
-
-var navVue = new Vue({
-  el: '#v-navbar'
-});
-
-
-//-- Top en el  ----------------------------------------------------------------
-var navHeight = $('#v-navbar').height();
-
-if ( $(window).width() > 768 ) {
-  $('body').css({
-    'margin-top': navHeight + 'px'
-  });
-}
-
-function calcularMargin(element) {
-  var elementHeight = $(element).height();
-  var elementMargin = (navHeight - elementHeight) / 2 + 'px';
-  $(element).css({'margin-top': elementMargin, 'margin-bottom': elementMargin });
-}
-
-calcularMargin('.navbar-toggle');
-//------
-// jQuery to collapse the navbar on scroll
-//------
-
-$(window).scroll(function() {
-    if ($(".navbar").offset().top > 50) {
-        $(".navbar-fixed-top").addClass("top-nav-collapse");
-    } else {
-        $(".navbar-fixed-top").removeClass("top-nav-collapse");
-    }
-});
-
-//jQuery for page scrolling feature - requires jQuery Easing plugin
-$(function() {
-    $('a.page-scroll').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-    });
-});
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var variables = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"variables\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-var deptos = new Vue({
-  el: '#section-tipos',
-  data: {
-    deptos: [
-      {
-        id: '101a401',
-        class: 'tab-pane active',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/101a401.jpg',
-        title: 'Departamentos 101 a 401',
-        desc: '3 Dormitorios / 1 en suite - 2 Baños completos - Walking closet - Baño visita - Espaciosa cocina equipada - Sala de estar - 2 terrazas',
-        nota: '* Depto. 101 con gradas en 1er nivel',
-        util: '136.28',
-        terraza: '28.07',
-        total: '164.35'
-      },
-      {
-        id: '102a502',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/102a502.jpg',
-        title: 'Departamentos 102 a 502',
-        desc: '2 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - 2 terrazas',
-        nota: '* PRIMER PISO ALTURA DE PISO A CIELO 2.90 M. SEGUNDO A QUINTO PISO ALTURA DE 2.60 M.',
-        util: '90.89',
-        terraza: '16.89',
-        total: '107.78'
-      },
-      {
-        id: '103a503',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/103a503.jpg',
-        title: 'Departamentos 103 a 503',
-        desc: '2 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - 2 terrazas',
-        nota: '* PRIMER PISO ALTURA DE PISO A CIELO 2.90 M. SEGUNDO A QUINTO PISO ALTURA DE 2.60 M.',
-        util: '84.95',
-        terraza: '18.40',
-        total: '103.35'
-      },
-      {
-        id: '104a404',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/104a404.jpg',
-        title: 'Departamentos 104 a 404',
-        desc: '3 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - Baño de visita - Sala de estar - 2 terrazas',
-        nota: '* DEPTO 104 CON GRADAS EN 1ER NIVEL.',
-        util: '140.02',
-        terraza: '24.6',
-        total: '164.62'
-      },
-      {
-        id: '504',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/504-01.jpg',
-        title: 'Departamentos 504',
-        desc: `3 dormitorios / 1 en suite - 2 baños completos - Walking closet - Espaciosa cocina equipada - Baño visita - Sala de estar - 2 terrazas - Terraza panorámica de uso exclusivo`,
-        util: '140.02',
-        terraza: '24.6',
-        total: '190.85',
-        panoramica: 'Superfice Terraza Panorámica: 26.23 M2'
-
-      },
-      {
-        id: '511',
-        class: 'tab-pane',
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/511-01.jpg',
-        title: 'Departamentos 511',
-        desc: '3 dormitorios / 1 en suite - 3 baños completos - Walking closet - Baño visita - Sala de estar - Espaciosa cocina equipada - Amplia terraza - terraza panorámica de uso exclusivo',
-        util: '1238.32',
-        terraza: '26.13',
-        total: '192.46',
-        panoramica: 'Superfice Terraza Panorámica: 28.01 M2'
-      },
-    ],
-  },
-
-});
-
-$('#section-tipos .dropdown-menu > li').on('click', function () {
-$('#section-tipos .dropdown-menu > li').toggleClass('active').siblings().removeClass('active').attr('aria-expanded', 'false');
-});
-
-$(document).on('load', function () {
-  $('#511 .panoramica').html('Prueba');
-});
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var vue = __webpack_require__(1);
-var domotica = new Vue({
-  el: '#productos',
-  data: {
-    productos: [
-      {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/hcl.jpg',
-        title: 'Home Center Lite',
-        cant: '1 Unidad',
-        desc: 'Controlador principal del sistema FIBARO',
-        link: 'https://tuhogarinteligente.cl/home-center-lite/'
-      },
-      {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/smoke-sensor.jpg',
-        title: 'Smoke Sensor',
-        cant: '1 Unidad',
-        desc: 'Detecta humo y cambios drásticos de temperatura, activando la alarma.',
-        link: 'https://tuhogarinteligente.cl/sensor-de-humo/'
-      },
-      {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/motion-sensor.jpg',
-        title: 'Motion Sensor',
-        cant: '1 Unidad',
-        desc: 'Detecta el más mínimo movimiento, temperatura, vibración e intensidad de luz.',
-        link: 'https://tuhogarinteligente.cl/sensor-de-movimiento/'
-      },
-      {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/dw-sensor.jpg',
-        title: 'Door / Window Sensor',
-        cant: '1 Unidad',
-        desc: 'Detecta apertura de ventanas y puertas. Informa al controlador y envía una notificación a su dispositivo móvil.',
-        link: 'https://tuhogarinteligente.cl/sensor-puerta-ventana/'
-      },
-
-    ],
-  }
-});
-
-
-// $('.hero__cta > a').on('click', function (e) {
-//   e.preventDefault();
-//   $('#form-cotizacion').modal();
-// });
 
 
 /***/ })

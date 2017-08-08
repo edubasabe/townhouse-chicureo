@@ -1,4 +1,16 @@
-var variables = require('variables');
+var $ = require('jquery');
+
+$('#section-tipos .dropdown-menu > li').on('click', function () {
+$('#section-tipos .dropdown-menu > li').toggleClass('active').siblings().removeClass('active').attr('aria-expanded', 'false');
+});
+
+$(document).on('load', function () {
+  $('#511 .panoramica').html('Prueba');
+});
+
+//------------------------------------------------------------------------------
+// VueJS
+//------------------------------------------------------------------------------
 
 var deptos = new Vue({
   el: '#section-tipos',
@@ -74,12 +86,4 @@ var deptos = new Vue({
     ],
   },
 
-});
-
-$('#section-tipos .dropdown-menu > li').on('click', function () {
-$('#section-tipos .dropdown-menu > li').toggleClass('active').siblings().removeClass('active').attr('aria-expanded', 'false');
-});
-
-$(document).on('load', function () {
-  $('#511 .panoramica').html('Prueba');
 });

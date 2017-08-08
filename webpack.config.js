@@ -5,4 +5,4 @@ module.exports = {
     path: path.resolve(__dirname,"./app/assets/js"),
     filename: "bundle.js"
   }
-}
+};

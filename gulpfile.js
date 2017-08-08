@@ -45,19 +45,23 @@ gulp.task('sass', function() {
 
 //-- Scripts
 gulp.task('scripts', function (callback) {
-  webpack(require('./webpack.config.js'), function () {
-    console.log('Hooray! Webpack Completed!');
+  webpack(require('./webpack.config.js'), function (err, stats) {
+    if (err) {
+      console.log(err.toString());
+    }
+    console.log(stats.toString());
+    browserSync.reload();
     callback();
   });
 });
 
 
 //-- Watch
-gulp.task('watch', ['browserSync','sass'], function (){
+gulp.task('watch', ['browserSync','sass', 'scripts'], function (){
   gulp.watch('app/assets/scss/**/*.scss', ['sass']);
   gulp.watch('app/*.html', browserSync.reload);
   // gulp.watch('app/*.php', browserSync.reload);
-  gulp.watch('app/assets/js/**/*.js', browserSync.reload);
+  gulp.watch('app/assets/js/**/*.js', ['scripts']);
 });
 
 //-- Useref

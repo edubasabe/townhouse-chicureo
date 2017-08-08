@@ -1,3 +1,5 @@
+var $ = require('jquery');
+
 var navHeight = $('.navbar').height();
 var navbar = $('.navbar.navbar-default');
 var body = $('body');
