@@ -42,4 +42,18 @@ body {
       background-color: $gris-dark;
     }
   }
+
+  &-group {
+    .btn {
+      &-primary {
+        &:active {
+          background-color: $negro;
+        }
+
+        &:focus {
+          background-color: $negro;
+        }
+      }
+    }
+  }
 }

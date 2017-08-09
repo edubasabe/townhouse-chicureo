@@ -26,8 +26,8 @@ var autoprefixerOptions = {
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'app'
-      // baseDir: 'dist'
+      // baseDir: 'app'
+      baseDir: 'dist'
     },
   });
 });
@@ -69,7 +69,7 @@ gulp.task('useref', function(){
   return gulp.src('app/*.html')
     .pipe(useref())
     // .pipe(gulpIf('app/assets/js/vendor/**/*.js', uglify()))
-    .pipe(gulpIf('app/assets/css/vendor/**/*.css', cssnano()))
+    .pipe(gulpIf('app/assets/css/**/**/*.css', cssnano()))
     .pipe(gulp.dest('dist'));
 });
 

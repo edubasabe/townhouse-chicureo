@@ -1,4 +1,6 @@
 .headline {
+  font-weight: 600;
+
   @include xxs-device {
     font-size: 3rem;
     margin-bottom: 3rem;

@@ -4,33 +4,35 @@ var domotica = new Vue({
   data: {
     productos: [
       {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/hcl.jpg',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/productos/hcl.jpg',
         title: 'Home Center Lite',
         cant: '1 Unidad',
         desc: 'Controlador principal del sistema FIBARO',
         link: 'https://tuhogarinteligente.cl/home-center-lite/'
       },
       {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/smoke-sensor.jpg',
-        title: 'Smoke Sensor',
-        cant: '1 Unidad',
-        desc: 'Detecta humo y cambios drásticos de temperatura, activando la alarma.',
-        link: 'https://tuhogarinteligente.cl/sensor-de-humo/'
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/productos/dimmer-2.jpg',
+        title: 'Dimmer',
+        cant: '2 Unidades',
+        desc: 'Varía la intensidad de las luces.',
+        nota: '* Fuentes dimmeables.',
+        link: 'https://tuhogarinteligente.cl/producto/universal-dimmer-2/'
       },
       {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/motion-sensor.jpg',
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/productos/relay-switch-2-5kw.jpg',
+        title: 'Relay 1x2,5 kw',
+        cant: '1 Unidad',
+        desc: 'Controla 1 toma de corriente.',
+        link: 'https://tuhogarinteligente.cl/producto/relay-switch-2x15-kw/'
+      },
+      {
+        imgsrc: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/productos/motion-sensor.jpg',
         title: 'Motion Sensor',
         cant: '1 Unidad',
         desc: 'Detecta el más mínimo movimiento, temperatura, vibración e intensidad de luz.',
         link: 'https://tuhogarinteligente.cl/sensor-de-movimiento/'
       },
-      {
-        imgsrc: 'https://tuhogarinteligente.cl/inmobi/cubica-montemar/assets/images/dw-sensor.jpg',
-        title: 'Door / Window Sensor',
-        cant: '1 Unidad',
-        desc: 'Detecta apertura de ventanas y puertas. Informa al controlador y envía una notificación a su dispositivo móvil.',
-        link: 'https://tuhogarinteligente.cl/sensor-puerta-ventana/'
-      },
+
 
     ],
   }

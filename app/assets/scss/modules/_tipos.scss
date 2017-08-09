@@ -5,6 +5,8 @@
     display: block;
 
 
+
+
     @include xxs-device {
       margin: 2rem auto;
       // width: 30rem;
@@ -79,4 +81,14 @@
   }
 
 
+}
+
+#loft {
+  .col-xs-12 {
+    &:first-child {
+      div {
+        display: none;
+      }
+    }
+  }
 }
