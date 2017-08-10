@@ -5,27 +5,6 @@ $('#section-tipos .dropdown-menu > li').toggleClass('active').siblings().removeC
 });
 
 
-$(document).on('load', function () {
-
-  $('#loft.tab-pane .tipos__content ul.list-unstyled').html(`
-
-  - Construcción en hormigón armado en paredes exteriores y losas
-  - Eficiente sistema de aislación térmica con sistema EIFS en paredes y cámara de aislación en techos
-  - Ventanas de PVC con folio color madera y termopanel
-  - Calefacción por radiadores
-  - Conexiones para instalación de aire acondicionado split
-  - Puertas enchapadas en todos los ambientes
-  - Pisos flotantes fotolaminados y porcelanato en baños y cocinas
-  - Domótica Ready
-    `);
-
-
-
-
-});
-
-
-
 //------------------------------------------------------------------------------
 // VueJS
 //------------------------------------------------------------------------------

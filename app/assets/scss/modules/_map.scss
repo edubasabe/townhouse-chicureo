@@ -6,7 +6,9 @@
 
   &__container {
     width: 100%;
-
+    @include xxs-device {
+      height: 30rem;
+    }
     @include sm-device {
       height: 40rem;
     }

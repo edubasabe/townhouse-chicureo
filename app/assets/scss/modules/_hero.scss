@@ -6,6 +6,7 @@
   @include xxs-device {
     background-size: cover;
     height: 77vh;
+    margin-top: -2px;
   }
 
   @include sm-device {
@@ -23,13 +24,22 @@
     position: absolute;
 
     @include xxs-device {
+      display: none;
+    }
+
+    @include xs-device {
       bottom: -6rem;
-      transform: scale(.5);
+      display: block;
+      transform: scale(.46);
       transform-origin: left bottom;
     }
 
     @include sm-device {
       transform: scale(1);
+    }
+
+    @include md-device {
+      transform: scale(.8);
     }
   }
 

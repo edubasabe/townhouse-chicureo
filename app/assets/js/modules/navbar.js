@@ -80,6 +80,9 @@ $(function() {
         $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top
         }, 1500, 'easeInOutExpo');
+
+        // Cerrar menu desplegable una vez que se haga click
+        $('.navbar-collapse.navbar-ex1-collapse.collapse').removeClass('in');
         event.preventDefault();
     });
 });

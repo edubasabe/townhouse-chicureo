@@ -37,9 +37,3 @@ var domotica = new Vue({
     ],
   }
 });
-
-
-// $('.hero__cta > a').on('click', function (e) {
-//   e.preventDefault();
-//   $('#form-cotizacion').modal();
-// });

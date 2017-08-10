@@ -50,13 +50,13 @@
       <div class="hero__logo">
         <p><img src="./assets/images/logo/townhouse-logo.png" srcset="./assets/images/logo/townhouse-logo@2x.png 2x, ./assets/images/logo/townhouse-logo@3x.png 3x " alt="Cubica Montemar" class="center-block img-responsive"></p>
         <h2 class="hero__logo__headline headline-color--blanco text-center">Es un conjunto residencial concebido para dar a sus habitantes la máxima sensación de amplitud y confort con un hogar inteligente</h2>
-        <p class="text-center hero__cta"><a href="#" class="btn btn-lg btn-primary" id="btn-cotizacion">Solicitar Cotización</a></p>
+        <p class="text-center hero__cta"><a href="#" class="btn btn-lg btn-primary" id="btn-cotizacion" data-toggle="modal" data-target="#form-cotizacion">Solicitar Cotización</a></p>
       </div>
     </div>
     <div class="col-sm-6">
-      <form class="hero__form" action="https://s242003202.t.eloqua.com/e/f2" method="post" name="townhouse_chicureo_form" onsubmit="setTimeout(function(){if(document.querySelector){var s=document.querySelector('form#form44 input[type=submit]');if(s){s.disabled=true;}}},100);return true;" id="form44">
+      <form class="hero__form" action="https://s242003202.t.eloqua.com/e/f2" method="post" name="townhouse_chicureo_form" id="form44">
         <legend>Solicita una Cotización</legend>
-        <input value="cubica-montemar" type="hidden" name="elqFormName"  />
+        <input value="townhouse_chicureo_form" type="hidden" name="elqFormName"  />
         <input value="242003202" type="hidden" name="elqSiteId"  />
         <input name="elqCampaignId" type="hidden"  />
         <input type="hidden" name="elqCustomerGUID" value="">
@@ -253,20 +253,21 @@
   </div>
 </footer>
 
-
 <div class="modal fade" id="form-cotizacion" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body">
+      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <svg width="10" height="10">
-            <line x1="0" y1="0" x2="10" y2="10" style="stroke:rgb(0,0,0);stroke-width:2"></line>
-            <line x1="0" y1="10" x2="10" y2="0" style="stroke:rgb(0,0,0);stroke-width:2"></line>
+          <svg width="20" height="20">
+            <line x1="0" y1="0" x2="20" y2="20" style="stroke:rgb(255,255,255);stroke-width:2"></line>
+            <line x1="0" y1="20" x2="20" y2="0" style="stroke:rgb(255,255,255);stroke-width:2"></line>
           </svg>
         </button>
-        <form class="hero__form" action="https://s242003202.t.eloqua.com/e/f2" method="post" name="cubica-montemar">
+      </div>
+      <div class="modal-body">
+        <form class="hero__form" action="https://s242003202.t.eloqua.com/e/f2" method="post" name="townhouse_chicureo_form" id="form44">
           <legend>Solicita una Cotización</legend>
-          <input value="cubica-montemar" type="hidden" name="elqFormName"  />
+          <input value="townhouse_chicureo_form" type="hidden" name="elqFormName"  />
           <input value="242003202" type="hidden" name="elqSiteId"  />
           <input name="elqCampaignId" type="hidden"  />
           <input type="hidden" name="elqCustomerGUID" value="">
@@ -327,7 +328,7 @@
     <!-- build:js assets/js/vendor/vendor.min.js -->
     <script type="text/javascript" src="./assets/js/vendor/vue.min.js"></script>
     <script type="text/javascript" src="./assets/js/vendor/jquery.min.js"></script>
-    <script type="text/javascript" src="./assets/js/vendor/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="./assets/js/vendor/bootstrap.min.js"></script> -->
     <!-- endbuild -->
     <!-- build:js assets/js/bundle.js -->
     <script type="text/javascript" src="./assets/js/bundle.js"></script>

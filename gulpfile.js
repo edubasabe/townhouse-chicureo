@@ -26,8 +26,8 @@ var autoprefixerOptions = {
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      // baseDir: 'app'
-      baseDir: 'dist'
+      baseDir: 'app'
+      // baseDir: 'dist'
     },
   });
 });
@@ -50,7 +50,7 @@ gulp.task('scripts', function (callback) {
       console.log(err.toString());
     }
     console.log(stats.toString());
-    browserSync.reload();
+    // browserSync.reload();
     callback();
   });
 });
