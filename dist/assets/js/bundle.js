@@ -13660,10 +13660,10 @@ var deptos = new Vue({
       {
         id: 'loft',
         class: 'tab-pane active',
-        img1: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/proyecto/loft-piso-1.jpg',
-        img2: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/proyecto/loft-piso-2.jpg',
+        img1: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/proyecto/loft-piso-1-etapa-III.jpg',
+        img2: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/proyecto/loft-piso-2-etapa-III.jpg',
         title: 'Loft',
-        price: '8.499',
+        price: '8.049',
         desc: 'Ubicados en segundo piso, Loft en doble altura con una superficie Útil de 120 m2, cuentan con 3 Dormitorios, 2 Baños, Estar privado y Terraza de 17 m2 con Barbecue.',
         caracteristicas: [
           { item: '- Hall de acceso en doble altura' },
@@ -13680,7 +13680,7 @@ var deptos = new Vue({
       {
         id: 'deptos',
         class: 'tab-pane',
-        img1: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/proyecto/depto.jpg',
+        img1: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/proyecto/departamento-etapa-III.jpg',
         title: 'Departamentos',
         price: '6.360',
         desc: 'Ubicados en primer piso con una Superficie Útil de 83 m2, cuentan con 2 Dormitorios, 2 Baños, Home Office, Terrazas con Barbecue y un Jardín privado.',
@@ -13736,7 +13736,7 @@ var domotica = new Vue({
         imgsrc: 'https://tuhogarinteligente.cl/inmobi/townhouse-chicureo/assets/images/productos/motion-sensor.jpg',
         title: 'Motion Sensor',
         cant: '1 Unidad',
-        desc: 'Detecta el más mínimo movimiento, temperatura, vibración e intensidad de luz.',
+        desc: 'Detecta el más mínimo movimiento, temperatura, vibración e intensidad de luz.',
         link: 'https://tuhogarinteligente.cl/sensor-de-movimiento/'
       },
 
